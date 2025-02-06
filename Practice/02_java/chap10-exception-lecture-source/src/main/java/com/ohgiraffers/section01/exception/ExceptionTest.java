@@ -1,7 +1,7 @@
 package com.ohgiraffers.section01.exception;
 
 public class ExceptionTest {
-    public void checkEnoughtMoney(int price, int money) throws ArithmeticException {
+    public void checkEnoughtMoney(int price, int money) throws ArithmeticException { //throws Exception도 가능하다. == 다형성
         System.out.println("가지고 계신 돈은 " + money + "원 입니다.");
 
         if(money >= price) {
