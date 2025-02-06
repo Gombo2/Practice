@@ -3,7 +3,7 @@ package com.ohgiraffers.section01.exception;
 public class Application {
     public static void main(String[] args) throws ArithmeticException {
 
-        /* 수업목표. 예외에 ㄷ해 이해하고 이를 처리하기 위한 문법을 활용할 수 있다. */
+        /* 수업목표. 예외에 대해 이해하고 이를 처리하기 위한 문법을 활용할 수 있다. */
         /* 설명.
         *   1. throws를 통한 위임
         *   2. try-catch를 통한 처리
