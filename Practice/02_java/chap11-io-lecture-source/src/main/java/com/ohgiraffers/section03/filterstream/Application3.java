@@ -57,7 +57,7 @@ public class Application3 {
             }
         } catch (EOFException e) {
 
-            /* 설명. data 단위 입출력은 EOF를 EOFㄸxception 처리를 통해 확인하고 처리할 수 있다. */
+            /* 설명. data 단위 입출력은 EOF를 EOFException 처리를 통해 확인하고 처리할 수 있다. */
             System.out.println("데이터 파일 읽기 완료!.");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

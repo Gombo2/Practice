@@ -20,7 +20,7 @@ public class Application2 {
 //        wildCardFarm.extendsType(new RabbitFarm<Rabbit>(new Rabbit()));
 
 
-        wildCardFarm.superType(RabbitFarm<Bunny>(new Bunny()));
+//        wildCardFarm.superType(RabbitFarm<Bunny>(new Bunny()));
 //        wildCardFarm.superType(RabbitFarm<DrunkenBunny>(new DrunkenBunny()));
 //        wildCardFarm.superType(RabbitFarm<Rabbit>(new Rabbit()));
 
