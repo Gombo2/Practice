@@ -28,11 +28,11 @@ public class safetyArea {
     private static int getMax(int[][] arr) {
         int max = 0;
 
-        for(int i : arr) {
-            if(i > max) {
-                max = i;
-            }
-        }
+//        for(int i : arr) {
+//            if(i > max) {
+//                max = i;
+//            }
+//        }
 
         return max;
     }
