@@ -18,7 +18,7 @@ public class Application4 {
         File ObjFile = new File("src/main/java/com/ohgiraffers/section03/filterstream/testObject.txt");
         ObjectOutputStream oos = null;
         try {
-            if(!ObjFile.exists()){
+            if (!ObjFile.exists()) {
                 oos = new ObjectOutputStream(
                         new BufferedOutputStream(
                                 new FileOutputStream(
@@ -45,7 +45,7 @@ public class Application4 {
             throw new RuntimeException(e);
         } finally {
             try {
-                if(oos != null) oos.close();
+                if (oos != null) oos.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -65,8 +65,8 @@ public class Application4 {
 
 //            newMemArr[0] = (MemberDTO)ois.readObject();
             int index = 0;
-            while(true) {
-                if(index == newMemArr.length) break;
+            while (true) {
+                if (index == newMemArr.length) break;
                 newMemArr[index++] = (MemberDTO) ois.readObject();
             }
 
@@ -78,7 +78,7 @@ public class Application4 {
             throw new RuntimeException(e);
         } finally {
             try {
-                if(ois != null) ois.close();
+                if (ois != null) ois.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -86,7 +86,7 @@ public class Application4 {
 
         /* 설명. 출력 및 입력까지 잘 완료되었는지 새로운 배열의 회원 정보 확인 */
         for (MemberDTO mem : newMemArr) {
-            if(mem == null) break;
+            if (mem == null) break;
             System.out.println(mem);
         }
     }
