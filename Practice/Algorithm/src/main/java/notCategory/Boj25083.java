@@ -1,3 +1,5 @@
+package notCategory;
+
 public class Boj25083 {
     public static void main(String[] args) {
         System.out.println("         ,r'\"7");

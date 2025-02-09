@@ -1,3 +1,5 @@
+package notCategory;
+
 public class stringBuilderTest {
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();

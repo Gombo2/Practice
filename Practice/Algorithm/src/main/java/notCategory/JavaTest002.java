@@ -1,3 +1,5 @@
+package notCategory;
+
 public class JavaTest002 {
     public static void main(String[] args) {
         System.out.println("|\\_/|");

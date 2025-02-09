@@ -2,7 +2,7 @@ package com.oghiraffers.section01.extend;
 
 public class Car /* extends Object */ {
 
-    private boolean runingStatus;       // 주생상태
+    private boolean runingStatus;       // 주행상태
 
     public Car() {
         System.out.println("부모의 기본 생성자 호출됨...");
