@@ -1,4 +1,4 @@
-package com.ohgiraffers.list.run;
+package com.ohgiraffers.section01.list.run;
 
 import java.util.Collections;
 import java.util.LinkedList;

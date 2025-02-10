@@ -1,7 +1,7 @@
-package com.ohgiraffers.list.run;
+package com.ohgiraffers.section01.list.run;
 
-import com.ohgiraffers.list.comparator.AscendingPrice;
-import com.ohgiraffers.list.dto.BookDTO;
+import com.ohgiraffers.section01.list.comparator.AscendingPrice;
+import com.ohgiraffers.section01.list.dto.BookDTO;
 
 import java.util.ArrayList;
 import java.util.Collections;

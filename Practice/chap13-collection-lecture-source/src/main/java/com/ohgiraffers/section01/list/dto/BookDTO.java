@@ -1,4 +1,4 @@
-package com.ohgiraffers.list.dto;
+package com.ohgiraffers.section01.list.dto;
 
 public class BookDTO implements Comparable<BookDTO> {
         private int number;
