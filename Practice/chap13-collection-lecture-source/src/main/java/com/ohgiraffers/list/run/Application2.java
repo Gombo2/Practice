@@ -23,8 +23,14 @@ public class Application2 {
 
 
 
-//        Collections.sort(bookList);
+//        Collections.sort(bookList);   //comparable 일때
+
+        /* 설명. 아래와 같은 기능을 한다.*/
         Collections.sort(bookList, new AscendingPrice());
+
+        /* 설명. List 계열도 sort 메소드를 쓸 수 있는데 Comparator를 구현한 클래스의 객체만 넘겨주면 된다. */
+        bookList.sort(new AscendingPrice());
+
 
         for (int i = 0; i < bookList.size(); i++) {
             System.out.println(bookList.get(i));
