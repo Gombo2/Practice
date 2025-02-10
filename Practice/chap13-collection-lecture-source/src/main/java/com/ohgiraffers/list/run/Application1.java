@@ -1,8 +1,6 @@
 package com.ohgiraffers.list.run;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Application1 {
     public static void main(String[] args) {
@@ -72,5 +70,38 @@ public class Application1 {
         }
 
         System.out.println(Arrays.toString(addArr));
+
+        /* 설명. ArrayList를 활용한 정렬*/
+        /* 목차. 1. 문자열 데이터 정렬(feat. 오름차순) */
+        List<String> stringList = new ArrayList<>();
+//        List<String> stringList = new LinkedList<>();
+        //내림차순 정렬할거면 ArrayList 사용 말고 LinkedList사용해야. (descendingIterator을 위해)
+        /* 궁금. 타입 은닉화. ArrayList 선언할때 List로 선언하는 이유?
+        *   타입 은닉화가 다형성 적용하는 근본적인 이유임.
+        *   은닉화(hiding) -> 타입은닉(다형성),구현은닉(인터페이스 활용), 필드 및 메소드 은닉(캡슐화(feat.private))*/
+
+
+        stringList.add("apple");
+        stringList.add("orange");
+        stringList.add("banana");
+        stringList.add("mango");
+        stringList.add("grape");
+
+        System.out.println("문자열 데이터 : " + stringList);
+
+        /* 설명. 실제로는 ArrayList 안에 있는 데이터인 String에 정의된 기준(오름차순)대로 정렬 됨 */
+        Collections.sort(stringList);
+        System.out.println("정렬된 문자열 데이터 : " + stringList);
+
+        /* 목차. 1-1. 문자열 데이터 내림차순 정렬 */
+        /* 설명. 다루는 Iterator와 해당 컬레션의 제네릭 타입은 왠만하면 꼭 명시하자(feat.다운캐스팅 방지(타입안정성)*/
+        Iterator<String> iter = ((LinkedList<String>)stringList).descendingIterator();
+        while(iter.hasNext()) { //StringTokenizer와 비슷. 한글로는 반복자라고 함.
+            System.out.println(iter.next());
+        }
+
+
+
+
     }
 }
