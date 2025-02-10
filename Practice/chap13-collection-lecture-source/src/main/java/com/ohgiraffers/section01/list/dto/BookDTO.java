@@ -81,5 +81,7 @@ public class BookDTO implements Comparable<BookDTO> {
         /* 설명. 책 제목에 대한 내림차순 */
 //        return -this.title.compareTo(o.title);
         return o.title.compareTo(this.title);
+
+
     }
 }
