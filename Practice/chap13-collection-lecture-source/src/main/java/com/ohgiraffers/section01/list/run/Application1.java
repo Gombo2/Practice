@@ -73,8 +73,8 @@ public class Application1 {
 
         /* 설명. ArrayList를 활용한 정렬*/
         /* 목차. 1. 문자열 데이터 정렬(feat. 오름차순) */
-        List<String> stringList = new ArrayList<>();
-//        List<String> stringList = new LinkedList<>();
+//        List<String> stringList = new ArrayList<>();
+        List<String> stringList = new LinkedList<>();
         //내림차순 정렬할거면 ArrayList 사용 말고 LinkedList사용해야. (descendingIterator을 위해)
         /* 궁금. 타입 은닉화. ArrayList 선언할때 List로 선언하는 이유?
         *   타입 은닉화가 다형성 적용하는 근본적인 이유임.
