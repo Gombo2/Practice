@@ -1,7 +1,5 @@
 package com.ohgiraffers.section02.enumtype;
 
-import java.sql.SQLOutput;
-
 public enum Subjects {
     JAVA,
     MARIADB,
@@ -14,6 +12,8 @@ public enum Subjects {
         System.out.println("기본 생성자 실행됨...");
     }
 
-//    @Override
-//    SQLOutput
+    @Override
+    public String toString() {
+        return "@@@@" + this.name() + "@@@@";
+    }
 }

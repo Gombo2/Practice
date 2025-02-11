@@ -30,10 +30,34 @@ public class MemberRepository {
 
             saveMembers(defaultMembers);
         }
+
+        loadMembers();
+    }
+
+    /* 설명. 파일로부터 회원 객체들을 읽어와서 memberList 컬렉션에 저장 */
+    private void loadMembers() {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(file)
+                )
+        )) {
+            while (true) {
+                memberList.add((Member)ois.readObject());
+            }
+
+        } catch (EOFException e) {
+            System.out.println("회원 정보 다 읽어옴");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /* 설명. ArrayList<Member>를 받으면 파일로 출력하는 메소드(feat. 덮어씌우는 기능) */
-    private void saveMembers(ArrayList<Member> defaultMembers) {
+    private void saveMembers(ArrayList<Member> inputMembers) {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(
@@ -42,7 +66,7 @@ public class MemberRepository {
                     )
             );
 
-            for (Member member : defaultMembers) {
+            for (Member member : inputMembers) {
                 oos.writeObject(member);
             }
 
@@ -58,6 +82,18 @@ public class MemberRepository {
     }
 
     public ArrayList<Member> selectAllMembers() {
-        return null;
+        return memberList;
+    }
+
+    public Member selectMemberBy(int memNo) {
+        Member returnMember = null;
+
+        for (Member member : memberList) {
+            if (member.getMemNo() == memNo) {
+                returnMember = member;
+            }
+        }
+
+        return returnMember;
     }
 }
