@@ -5,32 +5,49 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int hP = Integer.parseInt(st.nextToken());
-        int sP = Integer.parseInt(st.nextToken());
-        Set<String> notHeardPeopleList = new HashSet<>();
-        List<String> answer = new ArrayList<>();
-        int count = 0;
+        Deque<Integer> deque = new LinkedList<>();
+        StringTokenizer st = null;
+        int orderCount = Integer.parseInt(br.readLine());
+        for(int i = 0; i < orderCount; i++) {
+            String curOrder = br.readLine();
+            int num = 0;
+            if(curOrder.length() >= 6) {
+               st = new StringTokenizer(curOrder);
+               st.nextToken();
+               num = Integer.parseInt(st.nextToken());
+               deque.offer(num);
+            } else {
+                if(curOrder.equals("front")) {
+                    if(deque.isEmpty()) {
+                        System.out.println("-1");
+                    } else {
+                        System.out.println(deque.peek());
+                    }
+                } else if(curOrder.equals("back")) {
+                    if(deque.isEmpty()) {
+                        System.out.println("-1");
+                    } else {
+                        System.out.println(deque.peekLast());
+                    }
+                } else if(curOrder.equals("size")) {
+                    System.out.println(deque.size());
+                } else if(curOrder.equals("empty")) {
+                    if(deque.isEmpty()) {
+                        System.out.println("1");
+                    } else {
+                        System.out.println("0");
+                    }
+                } else {
+                    if(deque.isEmpty()) {
+                        System.out.println("-1");
+                    } else {
+                        System.out.println(deque.poll());
+                    }
+                }
 
-        for(int i = 0; i < hP; i++) {
-            String people = br.readLine();
-            notHeardPeopleList.add(people);
-        }
-
-        for(int j = 0; j < sP; j++) {
-            String peoples = br.readLine();
-            if(notHeardPeopleList.contains(peoples)) {
-                count++;
-                answer.add(peoples);
             }
         }
 
 
-
-        System.out.println(count);
-        Collections.sort(answer);
-        for(String people : answer) {
-            System.out.println(people);
-        }
     }
 }
