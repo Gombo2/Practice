@@ -3,6 +3,7 @@ package com.ohgiraffers.section04.testapp.repository;
 import com.ohgiraffers.section04.testapp.aggregate.AccountStatus;
 import com.ohgiraffers.section04.testapp.aggregate.BloodType;
 import com.ohgiraffers.section04.testapp.aggregate.Member;
+import com.ohgiraffers.section04.testapp.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -95,5 +96,46 @@ public class MemberRepository {
         }
 
         return returnMember;
+    }
+
+    public int selectLastMemberNo() {
+        Member lastMember = memberList.get(memberList.size() - 1);
+        return lastMember.getMemNo();
+    }
+
+    public int insertMember(Member member) {
+
+        /* 설명. 헤더가 추가되지 않는 ObjectOutputStream 클래스 정의(MyObjectOutputStream) */
+        MyObjectOutput moo = null;
+        int result = 0;
+
+        try {
+            moo = new MyObjectOutput(
+                    new BufferedOutputStream(
+                            new FileOutputStream(file, true)
+                    )
+            );
+            
+            /* 설명. 파일로 신규회원 추가하기 */
+            moo.writeObject(member);
+            
+            /* 설명. 컬렉션에도 신규회원 추가하기
+                (MyObjectOutputStream으로 이어붙인 정보는 다시 입력받아도 이전 파일로 인식함)
+                (프로그램을 껐다 켜면 다시 재인식이 되긴 함)
+             */
+            memberList.add(member);
+
+            result = 1;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if(moo != null) moo.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return result;
     }
 }
