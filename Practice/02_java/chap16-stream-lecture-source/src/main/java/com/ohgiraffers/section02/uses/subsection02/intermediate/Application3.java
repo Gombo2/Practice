@@ -10,7 +10,8 @@ public class Application3 {
         /* 수업목표. 스트림의 중계 연산 중 하나인 sorted에 대해 이해하고 사용할 수 있다. */
         List<Integer> integerList = IntStream.of(5, 10, 99, 2, 1, 35)
                                     .boxed()
-                                    .sorted()
+//                                    .sorted()
+                                    .sorted(new DescInteger()) //Compartor @Override를 통한 내림차순 가능.
                                     .collect(Collectors.toList());
 
         System.out.println("정렬된 Integer List " + integerList);
