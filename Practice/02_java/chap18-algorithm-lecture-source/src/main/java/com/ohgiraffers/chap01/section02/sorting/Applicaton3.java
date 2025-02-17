@@ -28,7 +28,7 @@ public class Applicaton3 {
 
     }
 
-    public static void solution(int legnth, int[] arr) {
+    public static void solution(int length, int[] arr) {
         for(int i = 0; i < length; i++) {
             int temp = arr[i];
 
