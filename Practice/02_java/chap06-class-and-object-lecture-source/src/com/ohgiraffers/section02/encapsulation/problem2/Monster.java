@@ -2,7 +2,7 @@ package com.ohgiraffers.section02.encapsulation.problem2;
 
 public class Monster {
     String name;
-    int hp;
+//    int hp;
     int mp;
 
     public void setInfo1(String info1) {

@@ -8,14 +8,15 @@ public class Application1 {
         methodA();
         System.out.println("main() 종료함...");
     }
-    public static void methodA() {
-        System.out.println("methondA() 호출됨...");
-        methodB();
-        System.out.println("methondA() 종료됨...");
-    }
-        public static void methodB () {
-            System.out.println("methodB() 호출됨...");
-            System.out.println("methodB() 종료됨...");
-        }
-    }
 
+    public static void methodA() {
+        System.out.println("methodA() 호출됨...");
+        methodB();
+        System.out.println("methodA() 종료됨...");
+    }
+    
+    public static void methodB() {
+        System.out.println("methodB() 호출됨...");
+        System.out.println("methodB() 종료됨...");
+    }
+}

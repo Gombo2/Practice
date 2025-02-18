@@ -4,8 +4,8 @@ public class Monster {
     String name;
     int hp;
 
-    public void setHP(int hp) {
-        if (hp >= 0) {
+    public void setHp(int hp) {
+        if(hp >= 0) {
             this.hp = hp;
         } else {
             this.hp = 0;

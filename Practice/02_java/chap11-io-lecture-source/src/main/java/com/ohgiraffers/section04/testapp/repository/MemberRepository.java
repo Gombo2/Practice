@@ -138,4 +138,33 @@ public class MemberRepository {
 
         return result;
     }
+
+    /* 설명. 수정된 사본이 넘어오면 컬렉션에 담긴 동일한 회원을 update하고 컬렉션의 회원 정보로 파일을 덮어씌운다. */
+    public int updateMember(Member reformedMember) {
+        for (int i = 0; i < memberList.size(); i++) {
+            if(memberList.get(i).getMemNo() == reformedMember.getMemNo()) {
+                memberList.set(i, reformedMember);      // 컬렉션 업데이트
+                saveMembers(memberList);                // 파일 업데이트(덮어씌우기)
+
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    /* 설명. soft delete(일종의 업데이트)를 통해 회원 탈퇴를 구성 */
+    public int deleteMember(int removeMemNo) {
+        int result = 0;
+
+        for (Member mem : memberList) {
+            if (mem.getMemNo() == removeMemNo) {
+                mem.setAccountStatus(AccountStatus.DEACTIVATED);
+                result = 1;
+                saveMembers(memberList);
+            }
+        }
+
+        return result;
+    }
 }

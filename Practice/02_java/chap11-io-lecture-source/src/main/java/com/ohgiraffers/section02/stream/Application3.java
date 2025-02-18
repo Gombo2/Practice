@@ -12,22 +12,20 @@ public class Application3 {
         try {
             fr = new FileReader(
                     "src/main/java/com/ohgiraffers/section02/stream/testReader.txt");
-
 //            int readChar = fr.read();
 //            System.out.println((char) readChar);
 
             int readChar = 0;
-            while((readChar = fr.read()) != -1) {
+            while((readChar = fr.read()) != -1 ) {
                 System.out.println((char) readChar);
             }
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
             try {
-               if(fr != null) fr.close();
+                if(fr != null) fr.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

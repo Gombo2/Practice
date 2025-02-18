@@ -4,11 +4,16 @@ public class Rectangle {
     private int height;
     private int width;
 
-    public Rectangle() {}
+    public Rectangle() {
+    }
 
     public Rectangle(int height, int width) {
         this.height = height;
         this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public void calArea() {
@@ -17,5 +22,13 @@ public class Rectangle {
 
     public void calRound() {
         System.out.println("사각형의 둘레는 " + (width + height) * 2);
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "height=" + height +
+                ", width=" + width +
+                '}';
     }
 }

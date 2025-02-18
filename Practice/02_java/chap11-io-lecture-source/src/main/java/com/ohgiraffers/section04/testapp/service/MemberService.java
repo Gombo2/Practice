@@ -55,7 +55,6 @@ public class MemberService {
 
     }
 
-
     public Member findMemberForMod(int memNo) {
         Member selectedMember = mr.selectMemberBy(memNo);
 
@@ -82,4 +81,24 @@ public class MemberService {
         }
 
         return selectedMember;
-    }   
+    }
+
+    public void modifyMember(Member reformedMember) {
+        int result = mr.updateMember(reformedMember);
+
+        if (result == 1) {
+            System.out.println(reformedMember.getId() + "회원님의 정보를 수정했습니다! ");
+        } else {
+            System.out.println("회원정보 수정 실패");
+        }
+    }
+
+    public void removeMember(int removeMemNo) {
+        int result = mr.deleteMember(removeMemNo);
+        if (result == 1) {
+            System.out.println(removeMemNo + "번 회원 탈퇴를 성공하였습니다.");
+        } else {
+            System.out.println("회원 탈퇴를 실패하였습니다.");
+        }
+    }
+}

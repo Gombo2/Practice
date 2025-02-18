@@ -11,6 +11,6 @@ public class Application4 {
         System.out.println(unaryOperator.apply("Hello "));
 
         BinaryOperator<String> binaryOperator = (str1, str2) -> str1 + str2;
-        System.out.println(binaryOperator.apply("nice to" , "meet u"));
+        System.out.println(binaryOperator.apply("Nice to ", "meet u!"));
     }
 }

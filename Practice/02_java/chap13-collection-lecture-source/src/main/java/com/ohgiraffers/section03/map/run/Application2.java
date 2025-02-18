@@ -10,18 +10,11 @@ public class Application2 {
 
         /* 수업목표. Properties에 대해 이해하고 활용할 수 있다. */
         /* 설명.
-        *   Properties란?
-        *    HashMap과 거의 유사하지만, key와 value 모두를 String으로만 사용할 수 있는
-        *    자료구조이다.(제네릭을 별도로 요구 X)
-        *    주로 설정과 관련된 파일과의 입출력에 사용된다. (store, load 등)
+         *  Properties란?
+         *   HashMap과 거의 유사하지만 key와 value 모두를 String으로만 사용할 수 있는
+         *   자료구조이다.(제네릭을 별도로 요구 X)
+         *   주로 설정과 관련된 파일과의 입출력에 사용된다.(store, load 등)
         * */
-
-        /* 궁금. 왜 굳이 사용함?
-        *   A. key = value 형식으로 저장된 .properties 파일들을 jar나 war로 말았을때 코드 수정후 jar다시 말기엔
-        *      오래 걸림. .properties는 java파일이 아니라서 금방 끝난다. (서버에 영향을 주지 않는 선에서 수정 가능)
-        *      -> 1. 수정가능, 2. 비개발자 또한 쉽게 수정 가능
-        * */
-
         Properties prop = new Properties();
 
         prop.setProperty("driver", "oracle.jdbc.driver.OracleDriver");
@@ -32,14 +25,15 @@ public class Application2 {
         System.out.println("prop = " + prop);
 
         try {
-            prop.store(new FileOutputStream("driver.dat"), "jbdc driver");
-            prop.storeToXML(new FileOutputStream("driver.xml"), "jdbc driver xml version");
+            prop.store(new FileOutputStream("driver.dat"),
+                    "jbdc driver");
+            prop.storeToXML(new FileOutputStream("driver.xml"),
+                    "jdbc driver xml version");
         } catch (IOException e) {
             throw new RuntimeException(e);
-
         }
 
-        /* 설명. 방금 출력으로 내보낸 파일을 읽어와서 새롤운 Properties에 담아보자 */
+        /* 설명. 방금 출력으로 내보낸 파일을 읽어와서 새로운 Properties에 담아보자. */
         Properties prop2 = new Properties();
         System.out.println("읽어오기 전: " + prop2);
 
@@ -50,12 +44,11 @@ public class Application2 {
             throw new RuntimeException(e);
         }
 
-        System.out.println("======= 읽어와 담긴 값 =======");
+        System.out.println("===== 읽어와 담긴 값 =====");
         System.out.println("드라이버: " + prop2.getProperty("driver"));
         System.out.println("경로: " + prop2.getProperty("url"));
         System.out.println("아이디: " + prop2.getProperty("user"));
         System.out.println("패스워드: " + prop2.getProperty("password"));
-
 
     }
 }

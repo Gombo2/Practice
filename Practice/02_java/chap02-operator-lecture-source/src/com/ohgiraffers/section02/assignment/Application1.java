@@ -2,35 +2,36 @@ package com.ohgiraffers.section02.assignment;
 
 public class Application1 {
     public static void main(String[] args) {
-        
+
         /* 수업목표. 복합대입 연산자를 이해하고 활용할 수 있다. */
-        /* 설명. 
-        *   대입연산자와 산술 복합 대입 연산자
-        *   '=', '*=', '-=', '/=', '%=', '+=' 
-        *  */
-        
+        /* 설명.
+         *  대입연산자와 산술 복합 대입 연산자
+         *  '=', '*=', '-=', '/=', '%=', '+='
+        * */
+
         int num = 12;
-        System.out.println("num = " + num);         //12
-        
+        System.out.println("num = " + num);     // 12
+
         num = num + 3;
-        System.out.println("num = " + num);         //15
-        
-        num += 3;
-        System.out.println("num = " + num);         //18
-        
+        System.out.println("num = " + num);     // 15
+
+        num += 3;       // 누적
+        System.out.println("num = " + num);     // 18
+
         num -= 3;
-        System.out.println("num = " + num);         //15
+        System.out.println("num = " + num);     // 15
 
         num *= 2;
-        System.out.println("num = " + num);         //30
+        System.out.println("num = " + num);     // 30
 
         num /= 2;
-        System.out.println("num = " + num);         //15
+        System.out.println("num = " + num);     // 15
 
         num %= 2;
-        System.out.println("num = " + num);         //1
+        System.out.println("num = " + num);     // 1
 
-        num =- 5;                                   //equal(=) 기호는 왼쪽에 오면 단순 대입 기호가 된다.
-        System.out.println("num = " + num);         // -5 (띄어쓰기와 상관없이 num에 -5를 대입한걸로 됨)
+        num =- 5;           // equal(=) 기호는 왼쪽에 오면 단순 대입 기호가 된다.(주의!)
+        System.out.println("num = " + num);     // -5
+
     }
 }

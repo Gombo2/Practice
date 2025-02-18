@@ -9,8 +9,8 @@ public class Application2 {
 
         /* 수업목표. LinkedHashSet에 대해 이해하고 활용할 수 있다. */
         /* 설명.
-        *   LinkedHashSet은 저장 당시의 순서를 유지하는 특성을 가지고 있다.
-        *   (중복 제거 + 순서 유지)
+         *  LinkedHashSet은 저장 당시의 순서를 유지하는 특성을 가지고 있다.
+         *  (중복 제거 + 순서 유지)
         * */
         Set<String> lSet = new LinkedHashSet<>();
         lSet.add("ramen");
@@ -20,9 +20,8 @@ public class Application2 {
         lSet.add("soup");
         System.out.println("lSet = " + lSet);
 
-        System.out.println();
         Iterator<String> iter = lSet.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             System.out.println(iter.next());
         }
     }

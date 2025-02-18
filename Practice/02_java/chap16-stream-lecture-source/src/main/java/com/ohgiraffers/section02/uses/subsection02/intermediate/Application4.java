@@ -1,7 +1,5 @@
 package com.ohgiraffers.section02.uses.subsection02.intermediate;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -12,10 +10,9 @@ public class Application4 {
 
         /* 수업목표. 스트림의 중계 연산 중 하나인 flatMap에 대해 이해하고 사용할 수 있다. */
         List<List<String>> list = Arrays.asList(
-                Arrays.asList("JAVA", "SPRING", "SPRINGBOOT"),
-                Arrays.asList("java", "spring", "springboot")
-        );
-
+                                                   Arrays.asList("JAVA", "SPRING", "SPRINGBOOT"),
+                                                   Arrays.asList("java", "spring", "springboot")
+                                               );
         list.stream().forEach(System.out::println);
         System.out.println("list = " + list);
 

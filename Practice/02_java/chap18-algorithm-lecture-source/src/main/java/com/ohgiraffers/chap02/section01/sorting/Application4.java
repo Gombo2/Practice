@@ -2,12 +2,11 @@ package com.ohgiraffers.chap02.section01.sorting;
 
 /* 수업목표. 퀵 정렬을 이해할 수 있다. */
 /* 설명.
- *   퀵 정렬(Quick Sort)
+ *  퀵 정렬(Quick Sort)
  *   기준값(pivot)을 선정해 해당 값보다 작은 데이터와 큰 데이터로 분류하는 것을 반복해서 정렬하는 것으로
  *   병합 정렬 알고리즘과 함께 실제 정렬 알고리즘으로 많이 활용되고 있다.
- *   시간 복잡도는 O(nlogn)이다.*/
-
-
+ *   시간 복잡도는 O(nlogn)이다.
+* */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

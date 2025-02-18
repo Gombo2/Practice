@@ -8,6 +8,7 @@ public class Application {
 
         try {
             subClass.method();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

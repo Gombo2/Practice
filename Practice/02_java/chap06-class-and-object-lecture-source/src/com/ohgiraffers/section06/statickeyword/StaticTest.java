@@ -5,7 +5,6 @@ public class StaticTest {
     private static int staticCount;
 
     public StaticTest() {
-
     }
 
     public int getNonStaticCount() {
@@ -16,7 +15,7 @@ public class StaticTest {
         return staticCount;
     }
 
-    public void increaseNonstaticCount() {
+    public void increaseNonStaticCount() {
         this.nonStaticCount++;
     }
 

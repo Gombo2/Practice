@@ -14,7 +14,7 @@ public class Application4 {
             fw.write("한글");
             fw.write("짱\n");
             fw.write("세종대왕 만만세!");
-            /* 궁금. 마찬가지로 Reader와 같이 , true false로 append 기능 사용이 가능하다. */
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -24,6 +24,5 @@ public class Application4 {
                 throw new RuntimeException(e);
             }
         }
-
     }
 }

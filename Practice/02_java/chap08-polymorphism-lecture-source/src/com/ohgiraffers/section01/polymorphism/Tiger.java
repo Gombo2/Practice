@@ -8,7 +8,8 @@ public class Tiger extends Animal {
 
     @Override
     public void run() {
-        System.out.println("호랑이는 왠만해선 달리지 않습니다. 어슬렁!~ 어슬렁!~");
+        System.out.println("호랑이는 왠만해선 달리지 않습니다. " +
+                "어슬렁~ 어슬렁~");
     }
 
     @Override

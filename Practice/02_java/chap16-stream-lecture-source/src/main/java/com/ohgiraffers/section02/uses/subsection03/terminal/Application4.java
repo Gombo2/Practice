@@ -11,13 +11,10 @@ public class Application4 {
 
         boolean anyMatch = stringList.stream().anyMatch(str -> str.contains("p"));
         boolean allMatch = stringList.stream().allMatch(str -> str.length() > 4);
-        boolean nonMatch = stringList.stream().noneMatch(str -> str.contains("c"));
+        boolean noneMatch = stringList.stream().noneMatch(str -> str.contains("c"));
 
         System.out.println("anyMatch = " + anyMatch);
         System.out.println("allMatch = " + allMatch);
-        System.out.println("nonMatch = " + nonMatch);
-
-        //      중계          vs      최종
-        /* 설명. filter,map //// forEach, collect */
+        System.out.println("noneMatch = " + noneMatch);
     }
 }

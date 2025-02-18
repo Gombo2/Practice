@@ -13,10 +13,8 @@ public class Application1 {
 
         boolean result = false;
 
-        /* 궁금. 밑에 코드 두개 동일한 역할을 함.*/
 //        biFunction = (x, y) -> x.equals(y);
-        biFunction = String::equals;        //참조
-
+        biFunction = String::equals;
 
         result = biFunction.apply(str1, str2);
         System.out.println("result = " + result);

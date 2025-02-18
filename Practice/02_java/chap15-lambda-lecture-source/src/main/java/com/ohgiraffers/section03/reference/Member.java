@@ -8,16 +8,12 @@ public class Member {
     }
 
     public Member(String memId) {
-        System.out.println("매개변수 있는 생성자 호출됨 ");
+        System.out.println("매개변수 있는 생성자 호출됨");
         this.memId = memId;
     }
 
     public void setMemId(String memId) {
         this.memId = memId;
-    }
-
-    public String getMemId() {
-        return memId;
     }
 
     @Override
