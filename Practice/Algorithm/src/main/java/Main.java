@@ -2,25 +2,23 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    public static int[] memoization;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-
         int num = Integer.parseInt(br.readLine());
-        int divNum = Integer.parseInt(br.readLine());
-        int lastTwoDigit = num % 100;
-
-        if(isDivided(num , divNum)) {
-            System.out.println("00");
-        } else {
-
-        }
-
-
+        memoization = new int[46];
+        int answer = Fibonacci(num);
+        System.out.println(answer);
 
     }
 
-    private static boolean isDivided(int num, int divNum) {
-        return num / divNum == 0 ? true : false;
+    private static int Fibonacci(int num) {
+        if(num <= 1) {
+            return num;
+        } else if(memoization[num] != 0) {
+            return memoization[num];
+        } else {
+            return memoization[num] = Fibonacci(num - 1) + Fibonacci(num - 2);
+        }
     }
 }
