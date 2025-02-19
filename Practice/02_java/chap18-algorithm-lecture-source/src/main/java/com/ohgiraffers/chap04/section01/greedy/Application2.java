@@ -20,8 +20,8 @@ public class Application2 {
         int[] coin = new int[N];                        // 동전의 종류들을 담을 배열
         for (int i = 0; i < coin.length; i++) {
             coin[i] = Integer.parseInt(br.readLine());
-
         }
+
         int count = 0;
 
         for (int i = N-1; i >= 0; i--) {

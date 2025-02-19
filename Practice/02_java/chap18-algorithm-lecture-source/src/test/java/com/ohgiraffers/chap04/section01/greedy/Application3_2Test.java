@@ -13,34 +13,43 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class Application1Test {
-    private static Integer input1, input2, input3;
-    private static Integer output1,output2, output3;
+public class Application3_2Test {
+    private static String input1, input2;
+    private static Integer output1, output2;
+
     @BeforeAll
     public static void set() {
 
         /* 예시1 */
-        input1 = 18;
-        output1 = 4;
-        input2 = 4;
-        output2 = -1;
-        input3 = 6;
-        output3 = 2;
+        input1 = "5\n" +
+                "1 4\n" +
+                "2 3\n" +
+                "3 5\n" +
+                "4 6\n" +
+                "5 7\n";
+        output1 = 3;
+
+        /* 예시2 */
+        input2 = "3\n" +
+                "3 3\n" +
+                "1 3\n" +
+                "2 3\n";
+        output2 = 2;
     }
 
     public static Stream<Arguments> provideSource() {
         return Stream.of(
                 arguments(input1, output1),
-                arguments(input2, output2),
-                arguments(input3, output3)
+                arguments(input2, output2)
         );
     }
-    @DisplayName("greedy1")
+
+    @DisplayName("greedy3_2")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("provideSource")
-    public void greedy1test(Integer input, Integer output) throws Exception {
-        Integer result = Application1.solution(input);
+    public void greedy3_2test(String input, Integer output) throws Exception {
+        Integer result = Application3_2.solution(input);
         Assertions.assertEquals(output, result);
     }
 }
