@@ -90,8 +90,24 @@ public class jupiterAssertionsTest {
     /* 설명. 우리가 의도한 예외 타입과 메세지가 발생했는지도 테스트 케이스로 할 수 있다. -> 반환형이 void 메소드 테스트 용이 */
     @Test
     @DisplayName("void 메소드를 테스트 하는 경우 어떤 exception이 발생하는지 테스트")
-    void testAssertThrows() {
+    void testAssertThrows() { // 예외 메세지가 같은지 다른지 확인하는 테스트 케이스
 
+        int firstNum = 10;
+        int secondNum = 0;
+        String expectedMessage = "0으로 나눌 수 없습니다!!";
+
+        NumberValidator validator = new NumberValidator();
+        Exception exception = Assertions.assertThrows(
+                Exception.class,
+                () -> validator.checkDividableNumbers(firstNum, secondNum)
+        );
+
+        Assertions.assertAll(
+                () -> Assertions.assertInstanceOf(IllegalArgumentException.class, exception,
+                        () -> "예외 타입이 일치하지 않음"),
+                () -> Assertions.assertEquals(expectedMessage, exception.getMessage(),
+                        () -> "예외 메세지가 일치하지 않음")
+        );
     }
 
 }
