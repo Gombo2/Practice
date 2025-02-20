@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.conection;
+package com.ohgiraffers.section01.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
