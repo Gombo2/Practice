@@ -115,7 +115,7 @@ public class ParameterizedTests {
         Assertions.assertEquals(verifyValue, actual);
     }
 
-    /* 목차. 4. @CsvSource를 이용한 CSV 리터럴 */
+    /* 목차. 4. @CsvSource를 이용한 CSV 리터럴 */   //CSV File -> key,value 로 이루어진 파일
     @DisplayName("영문자를 대문자로 변경하는지 확인")
     @ParameterizedTest
 //    @CsvSource({"test,TEST", "tEst,TEST", "JavaScript, JAVASCRIPT"})
