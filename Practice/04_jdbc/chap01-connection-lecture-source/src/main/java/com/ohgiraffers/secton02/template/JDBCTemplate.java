@@ -38,7 +38,7 @@ public class JDBCTemplate {
 
     public static void close(Connection con) {
         try {
-           if(con != null) con.close();
+            if (con != null) con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

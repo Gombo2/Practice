@@ -9,9 +9,12 @@ import java.util.Properties;
 
 public class Application2 {
     public static void main(String[] args) {
-        Properties prop = new Properties();
-        Connection con = null;
+        Properties prop = new Properties(); //Properties 객체 생성
+        Connection con = null;              //통로 선언
 
+        /* 궁금3. prop.load(new FileReader "경로") 후
+            필요한 값들을 properties.getProperty("key") 메소드 이용하여 value 반환
+            중요한 값들을 숨기며 사용할 수 있다는 장점이 있다. */
         try {
             prop.load(new FileReader("src/main/java/com/ohgiraffers/section01/connection/jdbc-config.properties"));
 
@@ -31,7 +34,7 @@ public class Application2 {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            if(con != null) {
+            if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
