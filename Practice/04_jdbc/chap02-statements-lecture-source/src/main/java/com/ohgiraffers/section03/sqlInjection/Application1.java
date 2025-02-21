@@ -18,18 +18,20 @@ public class Application1 {
         Statement stmt = null;
         ResultSet rset = null;
 
-        String query = "SELECT * FROM EMPLYEE WHERE EMP_ID = '" + empId
+        String query = "SELECT * FROM EMPLOYEE WHERE EMP_ID = '" + empId
                 + "' AND EMP_NAME = '" + empName + "'";
 
-        if(rset.next()) {
-            System.out.println(rset.getString("EMP_NAME") + "님 환영합니다.");
-        } else {
-            System.out.println("해당 회원은 존재하지 않습니다. ");
-        }
-
+        System.out.println("query = " + query);
 
         try {
             stmt = con.createStatement();
+            rset = stmt.executeQuery(query);
+
+            if(rset.next()) {
+                System.out.println(rset.getString("EMP_NAME") + "님 환영합니다.");
+            } else {
+                System.out.println("해당 회원은 존재하지 않습니다.");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -38,4 +40,5 @@ public class Application1 {
             close(con);
         }
     }
+
 }
