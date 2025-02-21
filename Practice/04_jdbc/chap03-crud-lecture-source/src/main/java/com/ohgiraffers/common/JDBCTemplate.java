@@ -40,7 +40,7 @@ public class JDBCTemplate {
 
     public static void close(Connection con) {
         try {
-            if(con != null) con.close();
+            if (con != null) con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +49,7 @@ public class JDBCTemplate {
 
     public static void close(Statement stmt) {
         try {
-            if(stmt != null) stmt.close();
+            if (stmt != null) stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -57,10 +57,32 @@ public class JDBCTemplate {
 
     public static void close(ResultSet rset) {
         try {
-            if(rset != null) rset.close();
+            if (rset != null) rset.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public static void commit(Connection con) {
+        try {
+            if(con != null){
+                con.commit();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void rollback(Connection con) {
+        try {
+            if(con != null){
+                con.rollback();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }
