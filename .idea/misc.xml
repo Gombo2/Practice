@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Practice/02_java/chap10-exception-lecture-source" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/02_java/chap11-io-lecture-source" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/02_java/chap13-collection-lecture-source" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/02_java/chap14-enum-lecture-source" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/Algorithm" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/holiday_challenge" />
+    <file type="web" url="file://$PROJECT_DIR$/Practice/test123" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="17 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
