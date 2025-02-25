@@ -15,6 +15,7 @@ public class OtherCiteRedirectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("get 요청을 받으면 naver 사이트로 redirect");
 
+        /* 설명. 리다이렉트를 해서 다시 다른  .....ㅠ*/
         resp.sendRedirect("https://www.naver.com");
     }
 }
