@@ -6,21 +6,20 @@
 </head>
 <body>
 <h1>forward</h1>
-<form action="forward" method="post"></form>
-<%--    table>(tr>td*3)*2--%>
-<table>
-    <tr>
-        <td>아이디</td>
-        <td><input tpye="text" name="userId"></td>
-        <td rowspan="2">
-            <button type="submit" style="height: 50px">로그인</button>
-        </td>
-    </tr>
-    <tr>
-        <td>비밀번호:</td>
-        <td><input type="password" name="password"></td>
-    </tr>
-</table>
+
+<form action="forward" method="post">
+    <%--    table>(tr>td*3)*2--%>
+    <table>
+        <tr>
+            <td>아이디: </td>
+            <td><input type="text" name="userId"></td>
+            <td rowspan="2"><button type="submit" style="height: 50px">로그인</button></td>
+        </tr>
+        <tr>
+            <td>비밀번호:</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>
