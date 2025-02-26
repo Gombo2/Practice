@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /* 설명. /first 이후 경로는 어떤 것이든 지금의 FirstFilter를 거치는 요청 경로가 든다. */
 /* 설명.
-*   @WebFilter라는 어노테이션을 통해 필터 설정을 할 수 있지만 필터의 동작 순서를 원하늗네로
+*   @WebFilter라는 어노테이션을 통해 필터 설정을 할 수 있지만 필터의 동작 순서를 원하는데로
 *   동작하게 하기 위해서는 Servlet에서는 web.xml을 활용한 xml 방식의 설정을 통해서만 바꿔줄 수 있다.
 *   (필터의 동작 순서는 web.xml에 작성한 filter mapping의 순서에 따라 동작한다.)
 * */
