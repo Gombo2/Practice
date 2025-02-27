@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="account" class="com.ohigraffers.common.PersonalAccount">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="110-234-456789"/>
+    </bean>
+
+<!--    1. 생성자 주입-->
+    <bean id="member" class="com.ohgiraffers.common.MemberDTO">
+        <constructor-arg name="sequence" value="1"/>
+        <constructor-arg name="name" value="홍길동"/>
+        <constructor-arg name="email" value="hong@gmail.com"/>
+        <constructor-arg name="phone" value="010-1234-5678"/>
+        <constructor-arg name="personalAccount" ref="account"/>
+<!--        의존하여 bean 생성 시에는 value가 아닌 ref="참고할 bean 명" 을 해주어야 한다. 이게 DI. -->
+    </bean>
+
+</beans>
