@@ -18,5 +18,14 @@ public class Application {
         /* 설명. 1. bean의 id를 가지고 추출 */
 //        MemberDTO member = (MemberDTO)context.getBean("member");
 //        System.out.println("member = " + member);
+
+        /* 설명. 2. bean의 클래스의 메타 정보*/
+//        MemberDTO member = context.getBean(MemberDTO.class);
+
+        /* 설명. 3. bean의 id와 클래스의 메타 정보를 전달하여 추출.*/
+        MemberDTO member = context.getBean("member", MemberDTO.class);
+        /* 궁금. bean의 이름은 unique한데, class 정보가 필요한 이유? */
+
+        System.out.println("member = " + member);
     }
 }

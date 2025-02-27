@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 //자바의 configuration metadata 방법 (spring 설정) 이게 pojo인거 바꾸려면 annotation으로 바꾸어야함(@Configuration)
-@Configuration
+@Configuration("config1")
 public class ContextConfiguration {
 
     @Bean("member")     //Bean 옆에 ("원하는 bean 명")으로 초기화할수 있다.
