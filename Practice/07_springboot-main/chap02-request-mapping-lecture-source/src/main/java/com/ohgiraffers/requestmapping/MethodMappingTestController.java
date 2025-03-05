@@ -2,6 +2,8 @@ package com.ohgiraffers.requestmapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,4 +31,19 @@ public class MethodMappingTestController {
 
         return "mappingResult";
     }
+
+    @GetMapping("/menu/delete")
+    public String getDeleteMenu(Model model) {
+        model.addAttribute("message", "GET 방식의 메뉴 삭제용 핸들러 메소드 호출용...");
+
+        return "mappingResult";
+    }
+
+    @PostMapping("/menu/delete")
+    public String postDeleteMenu(Model model) {
+        model.addAttribute("message", "POST 방식의 메뉴 삭제용 핸들러 메소드 호출용...");
+
+        return "mappingResult";
+    }
+
 }
