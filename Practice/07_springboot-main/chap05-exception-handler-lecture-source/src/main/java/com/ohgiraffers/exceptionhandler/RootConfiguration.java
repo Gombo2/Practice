@@ -15,6 +15,7 @@ public class RootConfiguration {
         /* 설명. 예외 타입과 처리할 페이지 설정 */
         Properties props = new Properties();
         props.setProperty("java.lang.NullPointerException", "error/nullPointer");
+        props.setProperty("MemberRegistExcpetion", "error/memberRegist");
 
         /* 설명. 전체 예외 관련되어 설정하기 */
         /* 설명. 1. 예외에 따른 페이지 설정한 것 활용 */
