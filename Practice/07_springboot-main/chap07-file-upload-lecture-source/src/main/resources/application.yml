@@ -6,3 +6,4 @@ spring:
   web:
       resoures:
         static-locations: file///C:/uploadFiles/
+

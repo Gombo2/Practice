@@ -10,6 +10,7 @@
 <body>
     <h1>파일 업로드 하기</h1>
     <h3>single file 업로드</h3>
+<!--    파일을 업로드 하는 요청의 MIME 타입은 multipart/form-data로 해야 서버에서 MultipartFile로 받을 수 있다.-->
     <form action="single-file" method="post" enctype="multipart/form-data">
         파일: <input type="file" name="singleFile"><br>
         파일설명: <input type="text" name="singleFileDescription">
