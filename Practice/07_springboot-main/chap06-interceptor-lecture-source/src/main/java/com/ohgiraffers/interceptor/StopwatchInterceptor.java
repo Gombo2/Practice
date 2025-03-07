@@ -30,6 +30,9 @@ public class StopwatchInterceptor implements HandlerInterceptor {
         /* 설명. requestHeadder에서 지역 추출 후 */
         Locale locale = request.getLocale();
         System.out.println("locale = " + locale);
+        if("ko".equals(locale.toString())) {
+            System.out.println("한국인이시군요");
+        }
 
         long startTime = System.currentTimeMillis();
         request.setAttribute("startTime", startTime);
