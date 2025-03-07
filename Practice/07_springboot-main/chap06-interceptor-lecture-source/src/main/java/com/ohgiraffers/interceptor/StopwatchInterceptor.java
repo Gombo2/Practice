@@ -28,17 +28,8 @@ public class StopwatchInterceptor implements HandlerInterceptor {
 
 
         /* 설명. requestHeadder에서 지역 추출 후 */
-//        HttpSession session = request.getSession();
-//        //사용자 전용 사물함.
-//
-//        Locale locale = (Locale)session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
-//        System.out.println("요청자의 국가: " + locale);
-//
-//        if(locale != null) {
-//
-//        } else {
-//            session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locale.KOREA);
-//        }
+        Locale locale = request.getLocale();
+        System.out.println("locale = " + locale);
 
         long startTime = System.currentTimeMillis();
         request.setAttribute("startTime", startTime);
