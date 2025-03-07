@@ -7,3 +7,4 @@ spring:
       resoures:
         static-locations: file///C:/uploadFiles/
 
+filepath: C:\\uploadFiles
