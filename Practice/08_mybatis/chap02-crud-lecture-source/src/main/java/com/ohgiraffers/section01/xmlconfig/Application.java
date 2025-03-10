@@ -1,5 +1,7 @@
 package com.ohgiraffers.section01.xmlconfig;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -21,7 +23,9 @@ public class Application {
                 case 1:
                     mc.findAllMenus();
                     break;
-                case 2: break;
+                case 2:
+                    mc.findMenuByMenuCode(inputMenuCode());
+                    break;
                 case 3: break;
                 case 4: break;
                 case 5: break;
@@ -32,5 +36,18 @@ public class Application {
                     System.out.println("번호를 잘 확인하고 입력해 주세요");
             }
         } while(true);
+    }
+
+    /* 설명. 사용자의 입력 값을 Map<String, String> 형태로 반환(reuqest의 parameter 개념 적용) */
+    //key - value 형태로 들어오기때문에 자바 예제에선 map형태로 받아 Controller에게 넘겨준다.
+    private static Map<String, String> inputMenuCode() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("조회 할 메뉴를 입력하세요: ");
+        String menuCode = sc.nextLine();
+
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("menuCode", menuCode);
+
+        return parameter;
     }
 }
