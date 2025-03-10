@@ -1,72 +1,71 @@
 package com.ohgiraffers.section01.xmlconfig;
 
-public class MemberDTO {
+public class MenuDTO {
     private int menuCode;
     private String menuName;
     private int menuPrice;
     private int categoryCode;
-    private String oderableStatus;
+    private String orderableStatus;
 
-    public MemberDTO() {
+    public MenuDTO() {
     }
 
-    public MemberDTO(int menuCode, String menuName, int menuPrice, int categoryCode, String oderableStatus) {
+    public MenuDTO(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
-        this.oderableStatus = oderableStatus;
+        this.orderableStatus = orderableStatus;
     }
 
     public int getMenuCode() {
         return menuCode;
     }
 
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public int getMenuPrice() {
-        return menuPrice;
-    }
-
-    public int getCategoryCode() {
-        return categoryCode;
-    }
-
-    public String getOderableStatus() {
-        return oderableStatus;
-    }
-
     public void setMenuCode(int menuCode) {
         this.menuCode = menuCode;
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 
+    public int getMenuPrice() {
+        return menuPrice;
+    }
+
     public void setMenuPrice(int menuPrice) {
         this.menuPrice = menuPrice;
+    }
+
+    public int getCategoryCode() {
+        return categoryCode;
     }
 
     public void setCategoryCode(int categoryCode) {
         this.categoryCode = categoryCode;
     }
 
-    public void setOderableStatus(String oderableStatus) {
-        this.oderableStatus = oderableStatus;
+    public String getOrderableStatus() {
+        return orderableStatus;
+    }
+
+    public void setOrderableStatus(String orderableStatus) {
+        this.orderableStatus = orderableStatus;
     }
 
     @Override
     public String toString() {
-        return "MemberDTO{" +
+        return "MenuDTO{" +
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
                 ", categoryCode=" + categoryCode +
-                ", oderableStatus='" + oderableStatus + '\'' +
+                ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }
-
 }

@@ -3,21 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MenuMapper">
-    <resultMap type="com.ohgiraffers.section01.xmlconfig.MenuDAO" id="menuResultMap">
+    <resultMap type="com.ohgiraffers.section01.xmlconfig.MenuDTO" id="menuResultMap">
         <id property="menuCode" column="MENU_CODE"/>
-        <result property="menuName" column="MENU_CODE"/>
+        <result property="menuName" column="MENU_NAME"/>
         <result property="menuPrice" column="MENU_PRICE"/>
         <result property="categoryCode" column="CATEGORY_CODE"/>
         <result property="orderableStatus" column="ORDERABLE_STATUS"/>
     </resultMap>
-<!--    menuDTO로 바꿔줘 -> resultMap 써야함. -->
     <select id="selectAllMenus" resultMap="menuResultMap">
         SELECT
                MENU_CODE
-            ,  MENU_NAME
-            ,  MENU_PRICE
-            ,  CATEGORY_CODE
-            ,  ORDERABLE_STATUS
+             , MENU_NAME
+             , MENU_PRICE
+             , CATEGORY_CODE
+             , ORDERABLE_STATUS
           FROM TBL_MENU
     </select>
 </mapper>

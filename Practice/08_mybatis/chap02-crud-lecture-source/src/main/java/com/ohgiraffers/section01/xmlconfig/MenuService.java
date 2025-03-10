@@ -13,14 +13,13 @@ public class MenuService {
         menuDAO = new MenuDAO();
     }
 
-    // 열고 닫는거까지 서비스 계층이 담당.
-    public List<MemberDTO> findAllMenus() {
+    public List<MenuDTO> findAllMenus() {
         SqlSession sqlSession = getSqlSession();
 
-        List<MemberDTO> menuList = menuDAO.selectAllMenus(sqlSession);
+        List<MenuDTO> menuList = menuDAO.selectAllMenus(sqlSession);
 
         sqlSession.close();
 
-        return null;
+        return menuList;
     }
 }
