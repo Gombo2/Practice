@@ -5,6 +5,6 @@ spring:
       max-request-size: 10MB  #요청 당 (파일이 여려개라도)
   web:
       resoures:
-        static-locations: file///C:/uploadFiles/
+        static-locations: file//  /C:/uploadFiles/
 
 filepath: C:\\uploadFiles
