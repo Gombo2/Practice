@@ -29,8 +29,12 @@ public class Application {
                 case 3:
                     mc.registMenu(inputMenu());
                     break;
-                case 4: break;
-                case 5: break;
+                case 4:
+                    mc.modfiyMenu(inputModifyMenu());
+                    break;
+                case 5:
+                    mc.removeMenu(inputMenuCode());
+                    break;
                 case 9:
                     System.out.println("프로그램을 종료하겠습니다.");
                     return;
@@ -38,6 +42,23 @@ public class Application {
                     System.out.println("번호를 잘 확인하고 입력해 주세요");
             }
         } while(true);
+    }
+
+    private static Map<String, String> inputModifyMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("변경할 메뉴의 번호를 입력해 주세요: ");
+        String menuCode = sc.nextLine();
+        System.out.println("변경할 메뉴의 이름을 입력해 주세요: ");
+        String menuName = sc.nextLine();
+        System.out.println("변경할 메뉴의 가격을 입력해 주세요: ");
+        String menuPrice = sc.nextLine();
+
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("menuCode", menuCode);
+        parameter.put("menuName", menuName);
+        parameter.put("menuPrice", menuPrice);
+
+        return parameter;
     }
 
     private static Map<String, String> inputMenu() {
