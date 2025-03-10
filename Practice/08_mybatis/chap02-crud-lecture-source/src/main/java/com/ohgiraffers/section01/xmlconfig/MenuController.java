@@ -34,4 +34,23 @@ public class MenuController {
             printResult.printErrorMessage(menuCode + "번의 메뉴는 없습니다.");
         }
     }
+
+    public void registMenu(Map<String, String> parameter) {
+        String menuName = parameter.get("menuName");
+        int menuPrice = Integer.parseInt(parameter.get("menuPrice"));
+        int categoryCode = Integer.parseInt(parameter.get("categoryCode"));
+
+        MenuDTO menu = new MenuDTO();
+        menu.setMenuName(menuName);
+        menu.setMenuPrice(menuPrice);
+        menu.setCategoryCode(categoryCode);
+        //덩어리로 만든 객체를 insert 해줌.
+
+        if(menuService.registMenu(menu)) {
+            printResult.printSuccessMessage("regist");
+        } else {
+            printResult.printErrorMessage("메뉴 추가 실패!");
+        }
+
+    }
 }

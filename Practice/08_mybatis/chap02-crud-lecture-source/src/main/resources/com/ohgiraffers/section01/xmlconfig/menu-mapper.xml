@@ -29,4 +29,25 @@
         FROM TBL_MENU
         WHERE MENU_CODE = #{menucode}
     </select>
+
+<!--    1. 자료형을 풀네임으로 작성하는 방법-->
+<!--    <insert id="insertMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">-->
+    <insert id="insertMenu" parameterType="MenuDTO">
+<!--        Type의 풀클래스 명을 적어주지 않으면 경로를 타고 파일을 인식하지 못함. 해결방법은 별칭을 등록하는 방법이 있다.-->
+        INSERT
+          INTO TBL_MENU
+        (
+          MENU_NAME
+        , MENU_PRICE
+        , CATEGORY_CODE
+        , ORDERABLE_STATUS
+        )
+        VALUES
+        (
+          #{menuName}
+        , #{menuPrice}
+        , #{categoryCode}
+        , 'Y'
+        )
+    </insert>
 </mapper>

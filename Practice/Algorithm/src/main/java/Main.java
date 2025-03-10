@@ -5,11 +5,12 @@ import java.util.*;
 
 
 public class Main {
-    static int minSecond = Integer.MAX_VALUE;
-    static int maxLoc = 100000;
-    static boolean[] visited;
-    static int startPoint;
-    static int endPoint;
+    static Map<Integer, Integer> countHouse = new HashMap<>();
+    static boolean[][] visited;
+    static int[][] map;
+    static int[] moveX = {0, 0, -1, 1};
+    static int[] moveY = {1, -1, 0, 0};
+
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +23,7 @@ public class Main {
 
         bfs();
 
-
+        System.out.println(minSecond);
     }
 
     private static void bfs() {
@@ -37,7 +38,17 @@ public class Main {
                 minSecond = Math.min(minSecond, node.second);
             }
 
-            if(node.x <= maxLoc && )
+            if(node.x * 2<= maxLoc && visited[node.x *2] == false) {
+                que.offer(new Node(node.x * 2 , node.second));
+            }
+
+            if(node.x + 1 <= maxLoc && visited[node.x + 1] == false) {
+                que.offer(new Node(node.x + 1 , node.second + 1));
+            }
+
+            if(node.x - 1 >= 0 && visited[node.x - 1] == false) {
+                que.offer(new Node(node.x - 1 , node.second + 1));
+            }
 
         }
     }

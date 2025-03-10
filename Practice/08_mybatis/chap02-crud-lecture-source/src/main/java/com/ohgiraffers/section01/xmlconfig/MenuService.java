@@ -32,4 +32,22 @@ public class MenuService {
 
         return menu;
     }
+
+    public boolean registMenu(MenuDTO menu) {
+        SqlSession sqlSession = getSqlSession();
+
+        int result = menuDAO.insertMenu(sqlSession, menu);
+
+        /* 설명. 조회와 달리 성공 실패에 따라 트랜잭션 처리(commit, rollback) */
+        if(result == 1) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+        /* 궁금. conneciton 객체가 close시 자동으로 commit되기에 성공여부를 확인후 닫아야한다.*/
+        sqlSession.close();
+
+        return result == 1 ? true : false;
+    }
 }
