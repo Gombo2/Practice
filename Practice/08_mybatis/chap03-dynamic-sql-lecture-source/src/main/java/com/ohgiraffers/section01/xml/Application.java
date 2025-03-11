@@ -140,7 +140,7 @@ public class Application {
         }
 
         /* 설명. HashSet -> ArrayList */
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>(set);
         Collections.sort(list);
         System.out.println("생성 된 랜덤 수: " + list);
         return list;
