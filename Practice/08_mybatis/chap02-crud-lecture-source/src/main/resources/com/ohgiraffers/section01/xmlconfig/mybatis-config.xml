@@ -11,9 +11,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/employeedb"/>
-                <property name="username" value="practice"/>
-                <property name="password" value="practice"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/menudb"/>
+                <property name="username" value="swcamp"/>
+                <property name="password" value="swcamp"/>
             </dataSource>
         </environment>
     </environments>

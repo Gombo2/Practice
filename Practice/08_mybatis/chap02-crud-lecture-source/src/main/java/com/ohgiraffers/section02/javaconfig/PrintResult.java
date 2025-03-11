@@ -1,10 +1,9 @@
-package com.ohgiraffers.section01.xmlconfig;
+package com.ohgiraffers.section02.javaconfig;
 
 import java.util.List;
 
 public class PrintResult {
     public void printMenus(List<MenuDTO> menuList) {
-//        menuList.forEach(menu -> System.out.println(menu));
         menuList.forEach(System.out::println);
     }
 
@@ -16,15 +15,14 @@ public class PrintResult {
         System.out.println("menu = " + menu);
     }
 
-    /* 설명. DML 작업 결과 출력 */
     public void printSuccessMessage(String statusCode) {
         String successMessage = "";
         switch (statusCode) {
             case "regist": successMessage = "신규 메뉴 등록에 성공하였습니다."; break;
-            case "modify": successMessage = "기존 메뉴 수정에 성공하였습니다."; break;
-            case "remove": successMessage = "기존 메뉴 삭제에 성공하였습니다.";
+            case "modify": successMessage = "메뉴 수정에 성공하였습니다."; break;
+            case "remove": successMessage = "메뉴 삭제에 성공하였습니다.";
         }
 
-        System.out.println(successMessage);
+        System.out.println("successMessage = " + successMessage);
     }
 }

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="MenuMapper">
-    <resultMap type="com.ohgiraffers.section01.xmlconfig.MenuDTO" id="menuResultMap">
+<mapper namespace="com.ohgiraffers.section03.remix.MenuMapper">
+    <resultMap type="com.ohgiraffers.section03.remix.MenuDTO" id="menuResultMap">
         <id property="menuCode" column="MENU_CODE"/>
         <result property="menuName" column="MENU_NAME"/>
         <result property="menuPrice" column="MENU_PRICE"/>
@@ -30,7 +30,7 @@
          WHERE MENU_CODE = #{menuCode}
     </select>
 <!--    <insert id="insertMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">-->
-    <insert id="insertMenu" parameterType="MenuDTO">
+    <insert id="insertMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
         INSERT
           INTO TBL_MENU
         (
@@ -47,7 +47,7 @@
         , 'Y'
         )
     </insert>
-    <update id="updateMenu" parameterType="MenuDTO">
+    <update id="updateMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
         UPDATE
                TBL_MENU
            SET MENU_NAME = #{menuName}
