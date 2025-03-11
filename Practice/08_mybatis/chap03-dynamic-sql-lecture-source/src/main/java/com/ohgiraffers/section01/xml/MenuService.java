@@ -3,6 +3,7 @@ package com.ohgiraffers.section01.xml;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.ohgiraffers.section01.xml.Template.getSqlSession;
 
@@ -65,5 +66,8 @@ public class MenuService {
 
 
         sqlSession.close();
+    }
+
+    public void searchMenuByNameOrCategory(Map<String, Object> stringObjectMap) {
     }
 }

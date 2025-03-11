@@ -53,7 +53,7 @@ public class Application {
                     ms.searchMenuByCodeOrSearchAll(inputAllOrOne());
                     break;
                 case 2:
-
+                    ms.searchMenuByNameOrCategory(inputSearchCriteriaMap());
                     break;
                 case 3:
 
@@ -62,6 +62,36 @@ public class Application {
                     return;
             }
         } while(true);
+    }
+
+    private static Map<String, Object> inputSearchCriteriaMap() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("검색 조건을 입력하세요(category or name or both or none): ");
+        String condition = sc.nextLine();
+
+
+        Map<String, Object> criteria = new HashMap<>();
+        if("category".equals(condition)) {
+            System.out.println("검색할 카테고리의 코드를 입력하세요: ");
+            int categoryCode = sc.nextInt();
+
+            criteria.put("categoryCode", categoryCode);
+
+        } else if("name".equals(condition)) {
+            System.out.print("검색할 이름을 입력하세요: ");
+            String nameValue = sc.nextLine();
+
+            criteria.put("nameValue", nameValue);
+        } else if("both".equals(condition)) {
+            System.out.println("검색할 이름을 입력하세요: ");
+            String nameValue = sc.nextLine();
+            System.out.println("검색할 카테고리 코드를 입력하세요: ");
+            int categoryCode = sc.nextInt();
+
+            criteria.put("nameValue", nameValue);
+            criteria.put("categoryCode", categoryCode);
+        }
+        return criteria;
     }
 
     private static SearchCriteria inputAllOrOne() {
@@ -74,7 +104,7 @@ public class Application {
     if(hasSearchValue) {
         System.out.println("검색 메뉴 코드를 입력하세요: ");
         String menuCode = sc.nextLine();
-        SearchCriteria.setCondition("menuCode");
+        searchCriteria.setCondition("menuCode");
         searchCriteria.setValue(menuCode);
     }
 
@@ -174,6 +204,7 @@ public class Application {
         String value = sc.nextLine();
 
         return new SearchCriteria(condition, value);
+
     }
 
     private static int inputPrice() {
