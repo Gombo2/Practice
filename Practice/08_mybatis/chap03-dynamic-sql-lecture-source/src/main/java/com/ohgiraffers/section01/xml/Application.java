@@ -75,7 +75,7 @@ public class Application {
         System.out.print("변경할 판매 여부를 결정해 주세요(Y/N): ");
         String orderableStatus = sc.nextLine().toUpperCase();
 
-        Map<String, Object> criteria = new HashMap<>;
+        Map<String, Object> criteria = new HashMap<>();
         criteria.put("menuCode", menuCode);
         criteria.put("menuName", menuName);
         criteria.put("orderableStatus", orderableStatus);
