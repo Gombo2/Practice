@@ -23,4 +23,57 @@
           FROM TBL_MENU A
          WHERE A.ORDERABLE_STATUS = 'Y'
     </select>
+
+<!-- 1. 매핑해놓은것을 재사용할 경우를 생각해서 만들기  -->
+<!-- join을 위한 resultMap들   -->
+<!--    <resultMap id="menuAndCategoryResultMap"-->
+<!--               type="com.ohgiraffers.section01.xmlmapper.MenuAndCategoryDTO">-->
+<!--        <id property="menuCode" column="MenuCode"/>-->
+<!--        <result property="menuName" column="MENU_CODE"/>-->
+<!--        <result property="menuPrice" column="MENU_PRICE"/>-->
+<!--        <result property="orderableStatus" column="ORDERABLE_STATUS"/>-->
+<!--        <association property="category" resultMap="categoryResultMap"/>-->
+<!--&lt;!&ndash;    2번 CategoryDTO 매핑한게 1번 reusltMap에 들어가야 함으로 <association> 을 활용하여 넣어준다.&ndash;&gt;-->
+<!--&lt;!&ndash;        CATEGORY_CODE 부분은 CategoryDTO로 받기 때문에 뺌. &ndash;&gt;-->
+<!--    </resultMap>-->
+<!--    <resultMap id="categoryResultMap" type="com.ohgiraffers.section01.xmlmapper.CategoryDTO">-->
+<!--        <id property="categoryCode" column="CATEGORY_CODE"/>-->
+<!--        <result property="categoryName" column="CATEGORY_NAME" />-->
+<!--        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>-->
+<!--    </resultMap>-->
+
+<!-- 2. 조인할때만 사용할 경우 (재사용 할 생각 x)-->
+    <resultMap id="menuAndCategoryResultMap"
+               type="com.ohgiraffers.section01.xmlmapper.MenuAndCategoryDTO">
+        <id property="menuCode" column="MenuCode"/>
+        <result property="menuName" column="MENU_CODE"/>
+        <result property="menuPrice" column="MENU_PRICE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        <association property="category" javaType="com.ohgiraffers.section01.xmlmapper.CategoryDTO">
+            <id property="categoryCode" column="CATEGORY_CODE"/>
+            <result property="categoryName" column="CATEGORY_NAME" />
+            <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
+        </association>
+    </resultMap>
+
+
+<!--    resultMap을 하자. 명시적으로 ? 09 08 강의 돌려듣기 (resultMap 쓰자, type말고?) -->
+    <select id="selectResultMapAssociationTest" resultMap="menuAndCategoryResultMap">
+        SELECT
+               A.MENU_CODE
+             , A.MENU_NAME
+             , A.MENU_PRICE
+             , A.CATEGORY_CODE
+             , B.CATEGORY_NAME
+             , B.REF_CATEGORY_CODE
+             , A.ORDERABLE_STATUS
+          FROM TBL_MENU a
+          JOIN TBL_CATEGORY B ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
+<!--        위에 SELECT에 CATEGORY_CODE는 A,B 동일하기에 하나만 가져온다.-->
+         WHERE A.ORDERABLE_STATUS = 'Y'
+    </select>
+
+    <select id="selectResultMapCollectionTest" resultMap="">
+
+    </select>
 </mapper>
