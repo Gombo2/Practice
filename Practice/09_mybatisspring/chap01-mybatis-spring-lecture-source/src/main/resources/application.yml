@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+#    mariadb 드라이버 쓰겠다.
+    jdbc-url: jdbc:mariadb://localhost:3306/menudb
+    username: swcamp
+    password: swcamp
