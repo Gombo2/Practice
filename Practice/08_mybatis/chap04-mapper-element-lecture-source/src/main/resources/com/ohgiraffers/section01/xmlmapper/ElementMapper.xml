@@ -73,7 +73,47 @@
          WHERE A.ORDERABLE_STATUS = 'Y'
     </select>
 
-    <select id="selectResultMapCollectionTest" resultMap="">
+<!--    <resultMap id="categoryAndMenuResultMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">-->
+<!--        <id property="categoryCode" column="CATEGORY_CODE"/>-->
+<!--        <result property="categoryName" column="CATEGORY_NAME"/>-->
+<!--        <result property="refCategoryName" column="REF_CATEGORY_NAME"/>-->
+<!--        <collection property="menus" resultMap="menuResultMap"/>-->
+<!--    </resultMap>-->
+<!--&lt;!&ndash;1.resultmap 두개쓰는 방식 (collection 사용)&ndash;&gt;-->
+<!--    <resultMap id="menuResultMap" type="com.ohgiraffers.section01.xmlmapper.MenuDTO">-->
+<!--        <id property="menuCode" column="MENU_CODE"/>-->
+<!--        <result property="menuName" column="MENU_NAME"/>-->
+<!--        <result property="menuPrice" column="MENU_PRICE"/>-->
+<!--        <result property="categoryCode" column="CATEGORY_CODE"/>-->
+<!--        <result property="orderableStatus" column="ORDERABLE_STATUS"/>-->
+<!--    </resultMap>-->
 
+<!-- 2. ofType을 통한 resultmap 하나로 두개 매핑하기.-->
+    <resultMap id="categoryAndMenuResultMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+        <result property="refCategoryName" column="REF_CATEGORY_NAME"/>
+        <collection property="menus" ofType="com.ohgiraffers.section01.xmlmapper.MenuDTO">
+            <id property="menuCode" column="MENU_CODE"/>
+            <result property="menuName" column="MENU_NAME"/>
+            <result property="menuPrice" column="MENU_PRICE"/>
+            <result property="categoryCode" column="CATEGORY_CODE"/>
+            <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResultMap">
+        SELECT
+                B.MENU_CODE
+                , B.MENU_NAME
+                , B.MENU_PRICE
+                , B.CATEGORY_CODE
+                , A.CATEGORY_NAME
+                , A.REF_CATEGORY_CODE
+                , B.ORDERABLE_STATUS
+        FROM TBL_CATEGORY A
+        JOIN TBL_MENU B ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
+
+        WHERE B.ORDERABLE_STATUS = 'Y'
     </select>
 </mapper>
