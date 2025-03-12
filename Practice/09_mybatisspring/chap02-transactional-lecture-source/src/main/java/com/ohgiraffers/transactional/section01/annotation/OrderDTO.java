@@ -5,12 +5,10 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class OrderDTO {
-    private LocalDate orderDate;                    // 서버의 현재 날짜
-    private LocalTime orderTime;                    // 서버의 현재 시간
+    private LocalDate orderDate;                        // 서버의 현재 날짜
+    private LocalTime orderTime;                        // 서버의 현재 시간
 
-    private List<OrderMenuDTO> orderMenus;          // 한 건의 주문에 고객이 주문한 메뉴얼
-                                                    // 주문은 order, 메뉴는 orderMenu로 지칭
-
+    private List<OrderMenuDTO> orderMenus;              // 한 건의 주문에 고객이 주문한 메뉴들
 
     public OrderDTO() {
     }
@@ -25,20 +23,20 @@ public class OrderDTO {
         return orderDate;
     }
 
-    public LocalTime getOrderTime() {
-        return orderTime;
-    }
-
-    public List<OrderMenuDTO> getOrderMenus() {
-        return orderMenus;
-    }
-
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
+    public LocalTime getOrderTime() {
+        return orderTime;
+    }
+
     public void setOrderTime(LocalTime orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public List<OrderMenuDTO> getOrderMenus() {
+        return orderMenus;
     }
 
     public void setOrderMenus(List<OrderMenuDTO> orderMenus) {
