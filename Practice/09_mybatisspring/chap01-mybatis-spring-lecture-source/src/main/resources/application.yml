@@ -6,6 +6,15 @@ spring:
     jdbc-url: jdbc:log4jdbc:mariadb://localhost:3306/menudb
     username: swcamp
     password: swcamp
+
+# fatal -> error -> warn -> info -> debug -> trace
+# fatal: 애플리케이션이 동작하지 않는 아주 심각한 경우
+# error: 요청 처리 중 문제 발생
+# warn: 처리 가능하지만 향후 시스템 에러의 원인 가능성
+# info: 로그인, 상태변경 같은 정보성 메세지
+# debug; 개발 시 디버그 용도로 사용하는 메세지
+# trace: 디버그 레벨이 광범위할 경우 좀 더 상세한 상태
+# fatal~warn까지 문제됨. info~trace까지 문제X , 개발 용도.
 logging:
   level:
 #    root: debug
