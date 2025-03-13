@@ -34,7 +34,7 @@ public class ProblemOfUsingDirectSQL {
      *  2. SQL에 의존하여 개발
      *  3. 패러다임 불일치(상속, 연관관계, 객체 그래프 탐색, 방향성)
      *  4. 동일성 보장 문제
-     * */
+    * */
 
     /* 목차. 1 */
     @DisplayName("직접 SQL을 작성하여 메뉴를 조회할 때 발생하는 문제 확인")
@@ -97,7 +97,11 @@ public class ProblemOfUsingDirectSQL {
         }
 
         // then
+        Assertions.assertTrue(!menuAndCategories.isEmpty());
+        menuAndCategories.forEach(System.out::println);
 
+        rset.close();
+        stmt.close();
     }
 
     /* 설명. 3. 패러다임 불일치(상속, 연관관계, 객체 그래프 탐색, 방향성) */
@@ -130,9 +134,9 @@ public class ProblemOfUsingDirectSQL {
      *    private String orderableStatus;
      *  }
      *
-     * */
+    * */
 
-    /* 설명. 4. 동일성 보장 문제*/
+    /* 설명. 4. 동일성 보장 문제 */
     @DisplayName("조회한 두 개의 행을 담은 객체의 동일성 비교 테스트")
     @Test
     void testEquals() throws SQLException {
@@ -163,11 +167,12 @@ public class ProblemOfUsingDirectSQL {
 
         // then
         Assertions.assertNotEquals(menu1, menu2);
-
-        /* 설명.
-        *   JPA를 활용하면 동일 비교가 가능하다. */
-//        Menu menu1 = entityMagner.find(Menu.class, 1);
-//        Menu menu2 = entityMagner.find(Menu.class, 1);
-//        System.out.println(menu1 == menu2);
     }
+
+    /* 설명.
+     *  JPA를 활용하면 동일 비교가 가능하다.
+     *  Menu menu1 = entityManager.find(Menu.class, 1);
+     *  Menu menu2 = entityManager.find(Menu.class, 1);
+     *  System.out.println(menu1==menu2);
+    * */
 }

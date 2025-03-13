@@ -2,37 +2,37 @@ package com.ohgiraffers.section01.problem;
 
 public class Category {
     private int categoryCode;
-    private String category;
+    private String categoryName;
 
     public Category() {
     }
 
-    public Category(int categoryCode, String category) {
+    public Category(int categoryCode, String categoryName) {
         this.categoryCode = categoryCode;
-        this.category = category;
+        this.categoryName = categoryName;
     }
 
     public int getCategoryCode() {
         return categoryCode;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
     public void setCategoryCode(int categoryCode) {
         this.categoryCode = categoryCode;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "categoryCode=" + categoryCode +
-                ", category='" + category + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }
