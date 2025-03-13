@@ -18,20 +18,20 @@ public class OrderMenu {
         return orderCode;
     }
 
-    public int getMenuCode() {
-        return menuCode;
-    }
-
-    public int getOrderAmount() {
-        return orderAmount;
-    }
-
     public void setOrderCode(int orderCode) {
         this.orderCode = orderCode;
     }
 
+    public int getMenuCode() {
+        return menuCode;
+    }
+
     public void setMenuCode(int menuCode) {
         this.menuCode = menuCode;
+    }
+
+    public int getOrderAmount() {
+        return orderAmount;
     }
 
     public void setOrderAmount(int orderAmount) {

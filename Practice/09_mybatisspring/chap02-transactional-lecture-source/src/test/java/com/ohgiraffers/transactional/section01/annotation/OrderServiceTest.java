@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+//오히려 커밋을 하지 않고 테스트만 할 수 있게 해줌.
+@Transactional
 class OrderServiceTest {
 
     @Autowired
@@ -34,8 +36,10 @@ class OrderServiceTest {
 
         orderInfo.setOrderMenus(
                 List.of(
-                        new OrderMenuDTO(3, 10),
-                        new OrderMenuDTO(4, 10)
+                        new OrderMenuDTO(2, 1),
+                        new OrderMenuDTO(3, 2),
+                        new OrderMenuDTO(5, 3),
+                        new OrderMenuDTO(8, 4)
                 )
         );
 
