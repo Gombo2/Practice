@@ -117,7 +117,7 @@ public class Application {
         Scanner sc = new Scanner(System.in);
         System.out.print("검색 조건을 입력하시겠습니까?(예 or 아니오): ");
 
-        boolean hasSearchValue = "예".equals(sc.nextLine()) ? true : false;
+        boolean hasSearchValue = "예".equals(sc.nextLine()); // 반환형이 boolean타입이라 삼항 연산자 사용 안해도 됨
 
     SearchCriteria searchCriteria = new SearchCriteria();
     if(hasSearchValue) {
