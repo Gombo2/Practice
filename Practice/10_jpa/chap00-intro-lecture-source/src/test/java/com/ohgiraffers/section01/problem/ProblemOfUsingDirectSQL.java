@@ -70,7 +70,7 @@ public class ProblemOfUsingDirectSQL {
     /* 목차. 2*/
     @DisplayName("연관된 객체 문제 확인")
     @Test
-    void testAssociationObject() {
+    void testAssociationObject() throws SQLException {
 
         // given
         String query = "SELECT A.MENU_CODE, A.MENU_NAME, A.MENU_PRICE, B.CATEGORY_CODE, "
