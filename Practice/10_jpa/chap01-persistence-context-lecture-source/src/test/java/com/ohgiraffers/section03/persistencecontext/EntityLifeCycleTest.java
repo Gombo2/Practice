@@ -18,11 +18,6 @@ public class EntityLifeCycleTest {
         entityManagerFactory = Persistence.createEntityManagerFactory("jpatest");
     }
 
-    @AfterAll
-    public static void closeFactory() {
-        entityManagerFactory.close();
-    }
-
     @BeforeEach
     public void initManager() {
 
@@ -35,19 +30,25 @@ public class EntityLifeCycleTest {
         entityManager.close();
     }
 
+    @AfterAll
+    public static void closeFactory() {
+        entityManagerFactory.close();
+    }
+
     /* 설명.
-     *   영속성 컨텍스트는 엔티티 매니저가 엔티티 객체를 저장하는 공간으로 엔티티 객체를 보관하고 관리한다.
-     *   엔티티 매니저가 생성될때 하나의 영속성 컨텍스트가 할당된다.
+     *  영속성 컨텍스트는 엔티티 매니저가 엔티티 객체를 저장하는 공간으로 엔티티 객체를 보관하고 관리한다.
+     *  엔티티 매니저가 생성될 때 하나의 영속성 컨텍스트가 할당된다.
      *
-     *  설명.
-     *   엔티티의 생명 주기
-     *   비영속, 영속, 준영속, 삭제 상태
-     *   */
+     * 설명.
+     *  엔티티의 생명 주기
+     *  비영속, 영속, 준영속, 삭제 상태
+    * */
 
     @Test
     public void 비영속성_테스트() {
         Menu foundMenu = entityManager.find(Menu.class, 11);
 
+        /* 설명. 비영속 상태의 newMenu */
         Menu newMenu = new Menu();
         newMenu.setMenuCode(foundMenu.getMenuCode());
         newMenu.setMenuName(foundMenu.getMenuName());
@@ -86,7 +87,6 @@ public class EntityLifeCycleTest {
         transaction.commit();
 
         Assertions.assertTrue(menuToRegist == foundMenu);
-
     }
 
     @Test
@@ -101,16 +101,14 @@ public class EntityLifeCycleTest {
         menuToRegist.setCategoryCode(10);
         menuToRegist.setOrderableStatus("Y");
 
-        entityManager.persist(menuToRegist);        //여기서부터 menuToRegist는 '영속'상태가 됨.
+        entityManager.persist(menuToRegist);        // 여기서부터 menuToRegist는 '영속'상태가 됨
         menuToRegist.setMenuName("메론죽");
 
         Menu foundMenu = entityManager.find(Menu.class, 501);
 
         transaction.commit();
 
-
-        Assertions.assertEquals("메론죽", foundMenu.getMenuName());
-
+        assertEquals("메론죽", foundMenu.getMenuName());
     }
 
     @Test
@@ -120,10 +118,18 @@ public class EntityLifeCycleTest {
 
         Menu foundMenu1 = entityManager.find(Menu.class, 11);
         Menu foundMenu2 = entityManager.find(Menu.class, 12);
-
         System.out.println("foundMenu1 = " + foundMenu1);
         System.out.println("foundMenu2 = " + foundMenu2);
 
+        /* 설명.
+         *  영속성 컨텍스트가 관리하던 엔티티 객체를 잠시 관리하지 않는 상태가 되게 한 것을 준영속 상태라고 한다.
+         *  detach, clear, close가 준영속 상태를 만들기 위한 메소드이다.
+         *
+         * 설명.
+         *  준영속을 사용하는 이유?
+         *  JPA에서 엔티티를 더 이상 영속성 컨텍스트에서 관리하지 않음을 의미하며, 특정 상황에서 성능 최적화나
+         *  데이터 무결성 유지, 특정 작업 후 엔티티 변경 방지를 위해 사용 된다.
+        * */
         entityManager.detach(foundMenu2);
 
         foundMenu1.setMenuPrice(7000);
@@ -133,5 +139,49 @@ public class EntityLifeCycleTest {
 
         assertEquals(7000, entityManager.find(Menu.class, 11).getMenuPrice());
         assertNotEquals(7000, entityManager.find(Menu.class, 12).getMenuPrice());
+    }
+
+    @Test
+    public void 준영속성_clear_close_테스트() {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        Menu foundMenu1 = entityManager.find(Menu.class, 11);
+        Menu foundMenu2 = entityManager.find(Menu.class, 12);
+
+//        entityManager.clear();      // 영속성 컨텍스트에 있는 모든 영속상태의 엔티티를 준영속 상태로 변경
+        entityManager.close();        // 기존의 영속 상태의 엔티티들이 모두 준영속 상태로 변경 + 영속성 컨텍스트 파괴
+        entityManager = entityManagerFactory.createEntityManager();
+
+        foundMenu1.setMenuPrice(7500);
+        foundMenu2.setMenuPrice(7500);
+
+        transaction.commit();
+
+        assertNotEquals(7500, entityManager.find(Menu.class, 11).getMenuPrice());
+        assertNotEquals(7500, entityManager.find(Menu.class, 12).getMenuPrice());
+    }
+
+    @Test
+    public void 병합_merge_수정_테스트() {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        Menu menuToDetach = entityManager.find(Menu.class, 5);
+        entityManager.clear();
+
+        menuToDetach.setMenuName("수박죽");
+
+        Menu refoundMenu = entityManager.find(Menu.class, 5);
+        System.out.println("첫 번째 주소값: " + menuToDetach.hashCode());
+        System.out.println("두 번째 주소값: " + refoundMenu.hashCode());
+
+        entityManager.merge(menuToDetach);
+
+        Menu managedMenu = entityManager.find(Menu.class, 5);
+
+        transaction.commit();
+
+        assertEquals("수박죽", managedMenu.getMenuName());
     }
 }

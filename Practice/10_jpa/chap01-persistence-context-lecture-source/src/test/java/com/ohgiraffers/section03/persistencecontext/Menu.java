@@ -8,7 +8,9 @@ public class Menu {
 
     @Id
     @Column(name="menu_code")
-    /* 설명. Entity 객체를 만들 때 값을 넣지 않거나 auto ddl을 통해 Entity 테이블 생성 시 활용할 목적*/
+
+    /* 설명. Entity 객체를 만들 때 값을 넣지 않거나(DB의 auto_increment를 따르게)
+         auto ddl을 통해 Entity로 테이블 생성 시 활용할 목적 */
 //    @GeneratedValue(strategy=GenerationType.IDENTITY)  // auto_increment 활용
     private int menuCode;
 
