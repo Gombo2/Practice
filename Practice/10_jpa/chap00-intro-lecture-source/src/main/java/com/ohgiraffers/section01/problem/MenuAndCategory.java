@@ -4,6 +4,7 @@ public class MenuAndCategory {
     private int menuCode;
     private String menuName;
     private int menuPrice;
+    @ManyToOne
     private Category category;
     private String oderableStatus;
 
