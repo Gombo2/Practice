@@ -6,7 +6,7 @@ public class MenuAndCategory {
     private int menuPrice;
     @ManyToOne
     private Category category;
-    private String oderableStatus;
+    private String orderableStatus;
 
     public MenuAndCategory() {
     }
@@ -35,8 +35,8 @@ public class MenuAndCategory {
         return category;
     }
 
-    public String getOderableStatus() {
-        return oderableStatus;
+    public String getOrderableStatus() {
+        return orderableStatus;
     }
 
     public void setMenuCode(int menuCode) {
@@ -55,8 +55,8 @@ public class MenuAndCategory {
         this.category = category;
     }
 
-    public void setOderableStatus(String oderableStatus) {
-        this.oderableStatus = oderableStatus;
+    public void setOrderableStatus(String orderableStatus) {
+        this.orderableStatus = orderableStatus;
     }
 
     @Override
@@ -69,4 +69,6 @@ public class MenuAndCategory {
                 ", oderableStatus='" + oderableStatus + '\'' +
                 '}';
     }
+
+
 }
