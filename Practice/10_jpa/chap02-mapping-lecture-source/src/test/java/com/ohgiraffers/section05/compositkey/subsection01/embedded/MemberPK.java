@@ -1,5 +1,6 @@
 package com.ohgiraffers.section05.compositkey.subsection01.embedded;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.util.Objects;
@@ -14,7 +15,11 @@ import java.util.Objects;
 @Embeddable
 public class MemberPK {
     /* 궁금. 복합키의 타입을 만드는 예제용 클래스. */
+
+    @Column(name="member_no")
     private int memberNo;
+
+    @Column(name="member_id")
     private String memberId;
 
     public MemberPK() {
