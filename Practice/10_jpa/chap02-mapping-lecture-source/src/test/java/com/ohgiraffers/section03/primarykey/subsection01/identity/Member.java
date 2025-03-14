@@ -9,15 +9,14 @@ import java.util.Date;
 public class Member {
 
     /* 설명.
-    *   - IDENTITY : MySQL 또는 MariaDB의 auto_increment
-    *   - SEQUENCE : 데이터베이스의 시퀀스 객체 사용(Oracle의 SEQUENCE)
-    *   - TABLE : 키 생성 테이블 사용
-    *   - AUTO : 자동 선택(MySQL이면 IDENTITY/Oracle이면 SEQUENCE)
+     *  - IDENTITY: MySQL 또는 MariaDB의 auto_increment
+     *  - SEQUENCE: 데이터베이스의 시퀀스 객체 사용(Oracle의 SEQUENCE)
+     *  - TABLE: 키 생성 테이블 사용
+     *  - AUTO: 자동 선택(MySQL이면 IDENTITY/Oracle이면 SEQUENCE)
     * */
-
     @Id
     @Column(name="member_no")
-//    @GeneratedValue(strategy = "tbl_menu_section03.subsection01")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberNo;
 
     @Column(name="member_id")
@@ -39,7 +38,7 @@ public class Member {
     private String address;
 
     @Column(name="enroll_date")
-    private java.util.Date enrollDate;
+    private Date enrollDate;
 
     @Column(name="member_role")
     private String memberRole;

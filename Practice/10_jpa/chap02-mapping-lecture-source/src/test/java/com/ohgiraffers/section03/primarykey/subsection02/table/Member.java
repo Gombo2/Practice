@@ -1,15 +1,20 @@
-package com.ohgiraffers.section02.column;
+package com.ohgiraffers.section03.primarykey.subsection02.table;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity(name="member_section02")
-@Table(name="tbl_member_section02")
+@Entity(name="member_section03_subsection02")
+@Table(name="tbl_member_section03_subsection02")
+@TableGenerator(
+        name="member_seq_table_generator",
+        table="tbl_my_sequence",
+        pkColumnValue="my_seq+member_no"
+)
 public class Member {
-
     @Id
     @Column(name="member_no")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "member_seq_table_generator")
     private int memberNo;
 
     @Column(name="member_id")
@@ -21,19 +26,16 @@ public class Member {
     @Column(name="nickname")
     private String nickname;
 
-    @Column(name="phone", columnDefinition = "varchar(200) default '010-0000-1234'")
+    @Column(name="phone")
     private String phone;
 
-    @Column(name="email", unique = true)
+    @Column(name="email")
     private String email;
 
-    @Column(name="address", nullable = false)
+    @Column(name="address")
     private String address;
 
     @Column(name="enroll_date")
-//    @Temporal(TemporalType.TIMESTAMP)         // datetime
-//    @Temporal(TemporalType.DATE)              // date
-    @Temporal(TemporalType.TIME)                // time
     private Date enrollDate;
 
     @Column(name="member_role")

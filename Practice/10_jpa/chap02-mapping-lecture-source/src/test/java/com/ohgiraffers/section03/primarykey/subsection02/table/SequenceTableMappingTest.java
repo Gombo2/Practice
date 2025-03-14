@@ -1,4 +1,4 @@
-package com.ohgiraffers.section03.primarykey.subsection01.identity;
+package com.ohgiraffers.section03.primarykey.subsection02.table;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.List;
 
-public class PrimaryKeyMappingTest {
+public class SequenceTableMappingTest {
     private static EntityManagerFactory entityManagerFactory;
 
     private EntityManager entityManager;
@@ -68,13 +68,13 @@ public class PrimaryKeyMappingTest {
         transaction.commit();
 
         /* 설명. persist 당시에는 부여되지 않은 pk값으로 commit 이후 조회를 하면 가능할까? */
-//        Member selectedMember = entityManager.find(Member.class, 1);
+//        Member selectedMember = entityManager.find(Member.class, 2);
 //        System.out.println("selectedMember = " + selectedMember);
 //
 //        Assertions.assertEquals(2, selectedMember.getMemberNo());
 
         /* 설명. 다중행 조회는 find로는 안되고 jpql이라는 문법을 사용해야 가능하다. */
-        String jpql = "SELECT A FROM member_section03_subsection01 A";
+        String jpql = "SELECT A FROM member_section03_subsection02 A";
         List<Member> memberCodeList = entityManager.createQuery(jpql, Member.class).getResultList();
         memberCodeList.forEach(System.out::println);
     }

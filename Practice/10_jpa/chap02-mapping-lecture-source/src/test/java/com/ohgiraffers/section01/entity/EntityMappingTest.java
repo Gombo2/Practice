@@ -6,7 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
 
-public class EntitiyMappingTest {
+public class EntityMappingTest {
     private static EntityManagerFactory entityManagerFactory;
 
     private EntityManager entityManager;
