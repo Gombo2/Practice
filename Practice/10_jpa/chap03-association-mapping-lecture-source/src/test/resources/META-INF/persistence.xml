@@ -12,8 +12,10 @@
 <!--        <class>com.ohgiraffers.section04.enumtype.Member</class>-->
 <!--        <class>com.ohgiraffers.section05.compositkey.subsection01.embedded.Member</class>-->
 <!--        <class>com.ohgiraffers.section05.compositkey.subsection02.idclass.Member</class>-->
-        <class>com.ohgiraffers.section01.manytoone.Category</class>
-        <class>com.ohgiraffers.section01.manytoone.MenuAndCategory</class>
+<!--        <class>com.ohgiraffers.section01.manytoone.Category</class>-->
+<!--        <class>com.ohgiraffers.section01.manytoone.MenuAndCategory</class>-->
+        <class>com.ohgiraffers.section02.onetomany.Menu</class>
+        <class>com.ohgiraffers.section02.onetomany.CategoryAndMenu</class>
 
         <properties>
 

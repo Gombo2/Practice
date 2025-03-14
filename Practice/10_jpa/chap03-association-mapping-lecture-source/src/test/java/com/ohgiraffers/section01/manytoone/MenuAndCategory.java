@@ -23,7 +23,7 @@ public class MenuAndCategory {      //카테고리를 품은 메뉴
     /* 궁금. 양쪽의 관계를 따져서 가장 큰 관계를 x : x 으로 표현.
     *   (1:n, n:m , 1:1 , .... -> 결과적으로 n:m이 됨)
     *   이럴 경우 교차 엔티티(중간단계가) 하나 생긴다*/
-    @ManyToOne                              // 메뉴 -> 카테고리의 전체 카디널리티 (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)                              // 메뉴 -> 카테고리의 전체 카디널리티 (fetch = FetchType.LAZY)
     @JoinColumn(name="category_code")       // FK 제약조건이 있는 컬럼명(자식 테이블에 있는 컬럼명만 쓴다.)
     private Category category;                      // 메뉴 1개가 카테고리 엔티티 객체를 몇개 가지는지(List<타입>/타입)
 
@@ -88,7 +88,7 @@ public class MenuAndCategory {      //카테고리를 품은 메뉴
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
-                ", category=" + category +
+//                ", category=" + category +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }
