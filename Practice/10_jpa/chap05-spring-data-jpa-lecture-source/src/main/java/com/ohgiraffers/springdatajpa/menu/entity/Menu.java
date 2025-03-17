@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-/* 궁금. Menu라는 entity는 단 하나만 존재한다 이제부터. */
 @Entity
 @Table(name="tbl_menu")
 @NoArgsConstructor
@@ -30,5 +29,4 @@ public class Menu {
 
     @Column(name="orderable_status")
     private String orderableStatus;
-
 }

@@ -1,19 +1,20 @@
 package com.ohgiraffers.springdatajpa.menu.entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
-@Table(name"tbl_category")
+@Table(name="tbl_category")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Category {
+
     @Id
     @Column(name="category_code")
     private int categoryCode;
@@ -22,6 +23,5 @@ public class Category {
     private String categoryName;
 
     @Column(name="ref_category_code")
-    private Integer refCategoryName;
-
+    private Integer refCategoryCode;
 }
