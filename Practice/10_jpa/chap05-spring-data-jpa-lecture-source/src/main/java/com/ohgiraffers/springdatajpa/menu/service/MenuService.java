@@ -6,7 +6,15 @@ import com.ohgiraffers.springdatajpa.menu.repository.MenuRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -21,6 +29,8 @@ public class MenuService {
         this.modelMapper = modelMapper;
     }
 
+
+    /* 설명. 1. findById()*/
     public MenuDTO findMenuByCode(int menuCode) {
 
 //        Menu menu = menuRepository.findById(menuCode).get();
@@ -30,5 +40,25 @@ public class MenuService {
         return modelMapper.map(menu, MenuDTO.class);
 
 
+    }
+
+    /* 설명. 2. findAll() (페이징 처리 전)*/
+    public List<MenuDTO> findMenuList() {
+        List<Menu> menus = menuRepository.findAll(Sort.by("menuCode").descending());
+
+        return menus.stream()
+                .map(menu -> modelMapper.map(menu, MenuDTO))
+                .collect(Collectors.toList());
+    }
+
+    /* 궁금. default page 보여주는 개수 변경 가능?*/
+    /* 설명. 3. findAll() (페이징 처리 후)*/
+    public Page<MenuDTO> findMenuList(@PageableDefault Pageable pageable){
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0: pageable.getPageNumber() - 1,
+                pageable.getPageSize(),
+                Sort.by("menuCode").descending());
+        Page<Menu> menuList = menuRepository.findAll(pageable);
+
+        return menuList.map(menu -> modelMapper.map(menu, MenuDTO.class));
     }
 }

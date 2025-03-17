@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/menu")
 @Slf4j
@@ -44,5 +46,15 @@ public class MenuController {
         model.addAttribute("menu", menu);
 
         return "menu/detail";
+    }
+
+    /* 설명. 페이징 처리 전*/
+    @GetMapping(".list")
+    public  String foindMenuList() {
+        List<MenuDTO> menuList= menuService.findMenuList();
+
+        model.addAttribute("menuList", menuList);
+
+        return "menu/list"
     }
 }
