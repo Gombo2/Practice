@@ -26,7 +26,7 @@
 	</form>
 
 	<script>
-		fetch('/menu/category')
+		fetch('/menu/category', {method: "GET"})
 				.then(res => res.json())
 				.then(data => {
 					const $categoryCode = document.getElementById('categoryCode');
