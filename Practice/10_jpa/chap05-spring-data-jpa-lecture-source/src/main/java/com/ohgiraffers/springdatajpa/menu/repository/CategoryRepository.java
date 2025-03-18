@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     
-    /* 설명. findAll() 메소드를 사용할 수 있지만 jpql 또는 native query로 작성할 수도 있음을 확인 */
     //    쿼리를 직접 짜보는거임
     @Query(value="SELECT m FROM Category m ORDER BY m.categoryCode ASC")
     List<Category> findAllCategories();
