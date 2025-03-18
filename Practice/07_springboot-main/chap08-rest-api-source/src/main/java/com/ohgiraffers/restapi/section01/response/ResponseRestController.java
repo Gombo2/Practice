@@ -4,6 +4,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,18 +64,18 @@ public class ResponseRestController {
                 .collect(Collectors.toMap(Message::getHttpStatusCode, Message::getMessage));
     }
 
-    /* 설명. 이미지 응답하기 */
-    @GetMapping(value= "/image/{filename}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImage(@PathVariable String filename) throws IOException {
-        Path path = Paths.get("C:\\uploadfiles\\img\\single", filename);
-        Resource resource = new UrlResource(path.toUri());
-
-        byte[] imageBytes = resource.getInputStream().readAllBytes();
-        return ResponseEntitiy.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inlne; filename=\"" + filename + "\"")
-                .body(imageBytes);
-
-        return Files.readAllBytes(path);
-    }
+//    /* 설명. 이미지 응답하기 */
+//    @GetMapping(value= "/image/{filename}", produces = MediaType.IMAGE_JPEG_VALUE)
+//    public byte[] getImage(@PathVariable String filename) throws IOException {
+//        Path path = Paths.get("C:\\uploadfiles\\img\\single", filename);
+//        Resource resource = new UrlResource(path.toUri());
+//
+//        byte[] imageBytes = resource.getInputStream().readAllBytes();
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inlne; filename=\"" + filename + "\"")
+//                .body(imageBytes);
+//
+//        return Files.readAllBytes(path);
+//    }
 
 }
