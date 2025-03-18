@@ -3,3 +3,16 @@ GET localhost:8080/response/hello
 
 ### GET request random
 GET localhost:8080/response/randomac
+
+### GET request message
+GET localhost:8080/response/message
+
+### GET request test
+GET localhost:8080/response/test
+
+### GET request map
+GET localhost:8080/response/map
+
+### GET request image
+GET localhost:8080/response/image
+
