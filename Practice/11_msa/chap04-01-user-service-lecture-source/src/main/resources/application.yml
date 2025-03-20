@@ -11,7 +11,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/menudb
     username: swcamp
-    password: swcmap
+    password: swcamp
 
 # jpa config
   jpa:
