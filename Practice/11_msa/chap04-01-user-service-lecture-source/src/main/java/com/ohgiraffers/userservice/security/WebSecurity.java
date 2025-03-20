@@ -53,6 +53,8 @@ public class WebSecurity{
                         .anyRequest().authenticated()
              )
             .authenticationManager(authenticationManager())
+
+            /* 설명. Session을 쓰지 않고 Jwt 토큰 방식으로 LocalThread에 저장하겠다는 설정 */
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
