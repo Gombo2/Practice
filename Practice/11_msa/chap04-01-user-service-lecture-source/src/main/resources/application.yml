@@ -24,7 +24,8 @@ spring:
 
 token:
   expiration_time: 43200000
-  secret: KA/5BJykn9jQgI/KdbmVrKixNql0NP5l7RZMuQXKqCsO+BhCif/aoYlb+n0gITSLacCRkFEjUcD7P7O7+LzZ4w==
+  secret: cv8CW9JkC78g585qL+dzzCTHaUW37Q1gK1fb/AT/pVFrYRU+TztloqGxMRX0cIEz0LUUGG9wfG4r7ZXwPMa8wQ==
+
 
 
 

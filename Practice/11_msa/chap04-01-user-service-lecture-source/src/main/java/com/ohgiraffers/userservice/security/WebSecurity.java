@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collections;
@@ -20,12 +21,14 @@ import java.util.Collections;
 public class WebSecurity{
 
     private JwtAuthenticationProvider jwtAuthenticationProvider;
-    private Environment env;        //의존성 주입 DI
+    private Environment env;                // 의존성 주입 DI
+    private JwtUtil jwtUtil;
 
     @Autowired
-    public WebSecurity(JwtAuthenticationProvider jwtAuthenticationProvider, Environment env) {
+    public WebSecurity(JwtAuthenticationProvider jwtAuthenticationProvider, Environment env, JwtUtil jwtUtil) {
         this.jwtAuthenticationProvider = jwtAuthenticationProvider;
         this.env = env;
+        this.jwtUtil = jwtUtil;
     }
 
     @Bean
@@ -37,9 +40,16 @@ public class WebSecurity{
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception{
         http.csrf(csrf -> csrf.disable());
 
+        /* 설명. 원본임*/
+        // http.authorizeHttpRequests(authz ->
+        //     authz.requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
+        //         .anyRequest().authenticated()
+        // )
+
         /* 설명. 허용되는 경로 및 권한 설정 */
         http.authorizeHttpRequests(authz ->
-                authz.requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
+                authz.requestMatchers(new AntPathRequestMatcher("/users/**", "POST")).permitAll()
+                     .requestMatchers(new AntPathRequestMatcher("/users/**", "GET")).hasRole("ENTERPRISE")
                         .anyRequest().authenticated()
              )
             .authenticationManager(authenticationManager())
@@ -47,6 +57,9 @@ public class WebSecurity{
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilter(getAuthenticationFilter(authenticationManager()));
+
+        /* 설명. 로그인 이후 사용자가 들고 온(request header에 발급받은 bearer 토큰을 들고 옴) 토큰을 검증하기 위한 필터*/
+        http.addFilterBefore(new JwtFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

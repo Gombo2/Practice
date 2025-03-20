@@ -1,11 +1,16 @@
 package com.ohgiraffers.userservice.security;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ohgiraffers.userservice.vo.RequestLoginVO;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,17 +20,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ohgiraffers.userservice.vo.RequestLoginVO;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 /*
  * 설명. JWT(Json Web Token)의 구조
  *
@@ -47,81 +47,79 @@ import lombok.extern.slf4j.Slf4j;
  *             iat: 토큰 활성화(발급) 시간(issued at))
  * 설명.
  *       b. 공개 클레임(public claim)
- *          : 사용자 정의 클레임으로 공개용 정보를 위해 사용(충돌 방지를 위해 URI로 구성)
+ *       	: 사용자 정의 클레임으로 공개용 정보를 위해 사용(충돌 방지를 위해 URI로 구성)
  * 설명.
  *       c. 비공개 클레임(private claim)
- *         : 사용자 정의 클레임으로 서버(JWT 발급자)와 클라이언트 사이에 임의로 지정한 정보를 저장
+ *      	: 사용자 정의 클레임으로 서버(JWT 발급자)와 클라이언트 사이에 임의로 지정한 정보를 저장
  *            (충돌 발생 우려가 있어 조심해서 사용할 것)
  * 설명.
  *  3. 서명(Verify Signature)
  *    - Header 인코딩 값과 Payload 인코딩 값을 합쳐서 비밀 키로 해쉬(헤더의 해싱 알고리즘으로)하여 생성
  */
-
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-	private final Environment env;
+    private Environment env;
 
-	public AuthenticationFilter(AuthenticationManager authenticationManager, Environment env) {
-		super(authenticationManager);
-		this.env = env;
-	}
+    public AuthenticationFilter(AuthenticationManager authenticationManager, Environment env) {
+        super(authenticationManager);
+        this.env = env;
+    }
 
-	/* 설명. 로그인 시도 시 동작하는 기능(POST /login 요청 시) */
-	@Override
-	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-		throws AuthenticationException {
+    /* 설명. 로그인 시도 시 동작하는 기능(POST /login 요청 시) */
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+            throws AuthenticationException {
 
-		try {
+        try {
+            
+            /* 설명. request를 통해 넘어온 json(login 시 id/pwd)를 RequestLoginVO 옮겨 담기 */
+            RequestLoginVO creds = new ObjectMapper().readValue(request.getInputStream(), RequestLoginVO.class);
 
-			/* 설명. request를 통해 넘어온 json(login 시 id/pwd)를 RequestLoginVO 옮겨 담기 */
-			RequestLoginVO creds = new ObjectMapper().readValue(request.getInputStream(), RequestLoginVO.class);
+            return getAuthenticationManager().authenticate(
+                    new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPwd(), new ArrayList<>())
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-			return getAuthenticationManager().authenticate(
-				new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPwd(), new ArrayList<>())
-			);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    /* 설명. 로그인 성공 시(Authentication authResult에는 로그인에 성공한 User 객체가 들어있음) JWT 토큰 생성할 예정 */
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
+        log.info("로그인 성공 이후 spring security가 Authentication 객체로 관리 되어 넘어옴: {}", authResult);
 
-	/* 설명. 로그인 성공 시(Authentication authResult에는 로그인에 성공한 User 객체가 들어있음) JWT 토큰 생성할 예정 */
-	@Override
-	protected void successfulAuthentication(HttpServletRequest request,
-		HttpServletResponse response,
-		FilterChain chain,
-		Authentication authResult) throws IOException, ServletException {
-		log.info("로그인 성공 이후 spring security가 Authentication 객체로 관리 되어 넘어옴: {}", authResult);
+        /* 설명. 로그인 이후 넘어온 Authentication 객체를 활용해 JWT 토큰 만들기 */
+        log.info("시크릿 키: {}", env.getProperty("token.secret"));   // 토큰 생성을 위한 secret key
 
-		/* 설명. 로그인 이후 넘어온 Authentication 객체를 활용해 JWT 토큰 만들기*/
-		log.info("시크릿 키: {}", env.getProperty("token.secret")); // 토큰 생성을 위한 secret key
+        /* 설명. 토큰의 payload에 (id, 가진 권한들, 만료시간)을 담을 예정 */
+        String id = ((User)authResult.getPrincipal()).getUsername();
+        log.info("회원의 아이디(이메일): {}", id);
 
-		/* 설명. 토큰과 payload에 (id, 가진 권한들, 만료시간)을 담을 예정 */
-		String id = ((User)authResult.getPrincipal()).getUsername();
-		log.info("회원의 아이디(이메일): {}", id);
+        List<String> roles = authResult.getAuthorities().stream()
+//                                       .map(role -> role.getAuthority())
+                                       .map(GrantedAuthority::getAuthority)
+                                       .collect(Collectors.toList());
+        log.info("List<String> 형태로 뽑아낸 로그인 한 회원의 권한들: {}", roles);
+        log.info("만료 시간: {}", env.getProperty("token.expiration_time"));
 
-		List<String> roles = authResult.getAuthorities().stream()
-			// .map(role -> role.getAuthority())
-			.map(GrantedAuthority::getAuthority)
-			.collect(Collectors.toList());
+        /* 설명. 이제부터 위에서 추출한 재료들로 JWT Token 제작(JWT 라이브러리 추가) */
+        Claims claims = Jwts.claims().setSubject(id);
+        claims.put("auth", roles);
 
-		/* 설명. 이제부터 위에서 추출한 재료들로 JWT Token 제작(JWT 라이브러리 추가)*/
-		Claims claims = Jwts.claims().setSubject(id);
-		// 비공개 클레임 추가.
-		claims.put("auth", roles);
-		claims.put("abc", 123);
+        String token = Jwts.builder()
+//                .setSubject(id)
+                .setClaims(claims)      // 등록된 클레임(subject) + 비공개 클레임(auth)
+                .setExpiration(new Date(System.currentTimeMillis()
+                        + Long.parseLong(env.getProperty("token.expiration_time"))))
+                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
+                .compact();
 
-		String token = Jwts.builder()
-			// .setSubject(id)
-			.setClaims(claims)		//등록된 클레임(subject) + 비공개 긐레임(auth)
-			.setExpiration(new Date(System.currentTimeMillis()
-				+ Long.parseLong(env.getProperty("token.expiration_time"))))
-			.signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
-			.compact();
-
-		response.addHeader("token", token);
-	}
-
+        response.addHeader("token", token);
+    }
 }
 
 

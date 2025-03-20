@@ -2,13 +2,14 @@ server:
 #  port: 8111
   port: 0
 
+# 한글
 spring:
   application:
     name: 1st-service
 
 eureka:
   instance:
-    instance-id: #{spring.applicatoin.name}:${spring.application.isntance_id:${}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
     fetch-registry: true

@@ -2,12 +2,11 @@ server:
   port: 8000
 
 eureka:
-    client:
+  client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
-
 spring:
   application:
     name: gateway-server
@@ -15,7 +14,7 @@ spring:
     gateway:
       routes:
         - id: 1st-service-get
-#          uri: http://localhost:58213/
+#          uri: http://localhost:62295/
 
           # 라우팅 될 마이크로 서비스 application name을 작성(유레카 서버의 대쉬보드에서 이름 확인)
           uri: lb://1ST-SERVICE
@@ -23,20 +22,16 @@ spring:
           # 게이트웨이 요청이 아래와 같은 패턴으로 온다면(일종의 조건문)
           predicates:
             - Path=/first-service/**
-#           GET 방식만 받는다 (이게 더 지엽적이라 위로 올라와야됨 아래에 second-service 보다 [insert, update, delete]는 아래 적용)
-#            - Metohd=GET
 
-          # 이후 라우팅 될 마이크로 서비스에 /first-service 라는 접두사가 제외되어 요청되게 할 내용 + 필터
+          # 이후 라우팅 될 마이크로 서비스에 /first-service라는 접두사가 제외되어 요청되게 할 내용 + 필터
           filters:
             - RewritePath=/first-service/(?<segment>.*), /$\{segment}
-#           전처리 후처리 가 가능하다. (filter의 개념)
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
 
         - id: 2nd-service-get
-#          uri: http://localhost:12345/
           uri: lb://2ND-SERVICE
           predicates:
             - Path=/second-service/**
           filters:
-            - RewritePath=/first-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/second-service/(?<segment>.*), /$\{segment}

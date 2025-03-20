@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: 2st-service
+    name: 2nd-service
 
 eureka:
   instance:
-    instance-id: #{spring.applicatoin.name}:${spring.application.isntance_id:${}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
     fetch-registry: true
