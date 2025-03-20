@@ -5,15 +5,14 @@ spring:
   application:
     name: swcamp-user-service
 
-
-# db config
+  ## db config
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/menudb
     username: swcamp
     password: swcamp
 
-# jpa config
+  ## jpa config
   jpa:
     hibernate:
       ddl-auto: create
@@ -22,3 +21,10 @@ spring:
     properties:
       hibernate:
         '[format_sql]': true
+
+token:
+  expiration_time: 43200000
+  secret: KA/5BJykn9jQgI/KdbmVrKixNql0NP5l7RZMuQXKqCsO+BhCif/aoYlb+n0gITSLacCRkFEjUcD7P7O7+LzZ4w==
+
+
+
