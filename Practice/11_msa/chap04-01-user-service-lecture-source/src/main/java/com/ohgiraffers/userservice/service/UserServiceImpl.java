@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
 
 		UserEntity loginUser = userRepository.findByEmail(email);	// email 필드로 where 절을 걸어서 조회하는 쿼리 메소드 작성
 
+		/* 설명. 사용자가 로그인 시 id를(이메일을) 잘못 입력 했다면 */
+		if(loginUser == null) {
+			throw new UsernameNotFoundException(email + " 이메일 아이디의 유저는 존재하지 않습니다.");
+		}
+
 		/* 설명. DB에서 조회 된 해당 email의 회원 권한들을 가져와, List<GrantedAuthority>로 만듬 */
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

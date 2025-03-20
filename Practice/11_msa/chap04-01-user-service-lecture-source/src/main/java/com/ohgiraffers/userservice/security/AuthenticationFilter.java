@@ -3,6 +3,7 @@ package com.ohgiraffers.userservice.security;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,6 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+	public AuthenticationFilter(AuthenticationManager authenticationManager) {
+		super(authenticationManager);
+	}
 
 	/* 설명. 로그인 시도 시 통작하는 기능(POST / login 요청 시) */
 	@Override
