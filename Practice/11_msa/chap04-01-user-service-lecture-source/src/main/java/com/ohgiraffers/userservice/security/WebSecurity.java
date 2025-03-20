@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/* 설명. WebSecurityConfigurerAdapter를 상속 받거나 @EnableWebSEcurity를 쓰는 예제는 옛날 방식.*/
 @Configuration
 public class WebSecurity {
 
