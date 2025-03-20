@@ -3,6 +3,8 @@ package com.ohgiraffers.userservice.security;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import jakarta.servlet.FilterChain;
@@ -31,6 +33,11 @@ public class JwtFilter extends OncePerRequestFilter {
 			log.info("순수 토큰 값: {}" + token);
 			if(jwtUtil.validateToken(token)) {
 
+				/* 설명. 유효한 토큰을 통해 아이디와 권한들을 가진 Authentication 추출 (Spring Security 가 인식할 수 있게)*/
+				Authentication authentication = jwtUtil.getAuthentication(token);
+
+				/* 설명. Srping Security가 인식할 수 있게 주입(요청당 저장 할 수 있는 공간만 LocalThread 에 저장) */
+				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		}
 
