@@ -48,7 +48,8 @@ public class WebSecurity{
 //                authz.requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
 //                        .anyRequest().authenticated()
 
-                authz.requestMatchers(new AntPathRequestMatcher("/users/**", "POST")).permitAll()
+                authz.requestMatchers(new AntPathRequestMatcher("/health", "GET")).permitAll()
+                     .requestMatchers(new AntPathRequestMatcher("/users/**", "POST")).permitAll()
                      .requestMatchers(new AntPathRequestMatcher("/users/**", "GET")).hasRole("ENTERPRISE")
                         .anyRequest().authenticated()
              )
