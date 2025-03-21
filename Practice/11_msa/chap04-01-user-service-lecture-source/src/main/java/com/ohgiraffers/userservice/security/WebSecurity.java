@@ -1,6 +1,7 @@
 package com.ohgiraffers.userservice.security;
 
 import jakarta.servlet.Filter;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,9 @@ public class WebSecurity{
     private JwtUtil jwtUtil;
 
     @Autowired
-    public WebSecurity(JwtAuthenticationProvider jwtAuthenticationProvider, Environment env, JwtUtil jwtUtil) {
+    public WebSecurity(JwtAuthenticationProvider jwtAuthenticationProvider,
+                       Environment env,
+                       JwtUtil jwtUtil) {
         this.jwtAuthenticationProvider = jwtAuthenticationProvider;
         this.env = env;
         this.jwtUtil = jwtUtil;
@@ -40,27 +43,24 @@ public class WebSecurity{
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception{
         http.csrf(csrf -> csrf.disable());
 
-        /* 설명. 원본임*/
-        // http.authorizeHttpRequests(authz ->
-        //     authz.requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
-        //         .anyRequest().authenticated()
-        // )
-
         /* 설명. 허용되는 경로 및 권한 설정 */
         http.authorizeHttpRequests(authz ->
+//                authz.requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
+//                        .anyRequest().authenticated()
+
                 authz.requestMatchers(new AntPathRequestMatcher("/users/**", "POST")).permitAll()
                      .requestMatchers(new AntPathRequestMatcher("/users/**", "GET")).hasRole("ENTERPRISE")
                         .anyRequest().authenticated()
              )
             .authenticationManager(authenticationManager())
-
-            /* 설명. Session을 쓰지 않고 Jwt 토큰 방식으로 LocalThread에 저장하겠다는 설정 */
+                
+            /* 설명. Session을 쓰지 않고 Jwt토큰 방식으로 LocalThread에 저장하겠다는 설정 */
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilter(getAuthenticationFilter(authenticationManager()));
 
-        /* 설명. 로그인 이후 사용자가 들고 온(request header에 발급받은 bearer 토큰을 들고 옴) 토큰을 검증하기 위한 필터*/
+        /* 설명. 로그인 이후 사용자가 들고 온(request header에 발급받은 bearer 토큰을 들고 옴) 토큰을 검증하기 위한 필터 */
         http.addFilterBefore(new JwtFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

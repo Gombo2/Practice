@@ -9,9 +9,8 @@ CREATE TABLE IF NOT EXISTS tbl_order2
     order_time    VARCHAR(8) NOT NULL COMMENT '주문시간',
     total_order_price    INT NOT NULL COMMENT '총주문금액',
     CONSTRAINT pk_order_code2 PRIMARY KEY (order_code)
-) ENGINE=INNODB COMMENT '주문';
+    ) ENGINE=INNODB COMMENT '주문';
 
-# 회원 테이블
 CREATE TABLE IF NOT EXISTS tbl_order_menu2
 (
     order_code INT NOT NULL COMMENT '주문코드',
@@ -20,12 +19,10 @@ CREATE TABLE IF NOT EXISTS tbl_order_menu2
     CONSTRAINT pk_comp_order_menu_code2 PRIMARY KEY (order_code, menu_code),
     CONSTRAINT fk_order_menu_order_code2 FOREIGN KEY (order_code) REFERENCES tbl_order2 (order_code),
     CONSTRAINT fk_order_menu_menu_code2 FOREIGN KEY (menu_code) REFERENCES tbl_menu (menu_code)
-) ENGINE=INNODB COMMENT '주문별메뉴';
+    ) ENGINE=INNODB COMMENT '주문별메뉴';
 
-# 한명에 대한 두개의 주문 건
 INSERT INTO TBL_ORDER2 VALUES (1, 1, '20250320', '12:23:14', 16000);
 INSERT INTO TBL_ORDER2 VALUES (2, 1, '20250320', '12:23:14', 14000);
-# 각 주문당 몇개를 골랐는지 5번메뉴 2개를 1번이, 6번메뉴 1개를 1번이
 INSERT INTO TBL_ORDER_MENU2 VALUES (1, 5, 2);
 INSERT INTO TBL_ORDER_MENU2 VALUES (1, 6, 1);
 INSERT INTO TBL_ORDER_MENU2 VALUES (2, 8, 2);

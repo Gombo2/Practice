@@ -4,9 +4,7 @@ import lombok.Data;
 
 @Data
 public class ResponseFindUserVO {
-	private String email;
-	private String name;
-	private String userId;
-
-
+    private String email;
+    private String name;
+    private String userId;
 }
