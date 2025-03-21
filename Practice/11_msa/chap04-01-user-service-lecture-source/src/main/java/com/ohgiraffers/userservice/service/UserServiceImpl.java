@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
 
         UserDTO userDTO = modelMapper.map(foundUser, UserDTO.class);
 
+
         return userDTO;
     }
 }
