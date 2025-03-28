@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <!-- 내부 스타일 방식  -->
+    <!-- 내부 스타일 시트 방식 -->
     <style>
+        
+        /* 속성(attribute) 값과 완전히 일치하는 요소(태그) 선택 */
+        div[name=name2] {
+            background: orangered;
+        }
+        
+        /* 속성 안의 값이 띄어쓰기를 기준으로 일치하는 단어 선택 */
+        div[name~=name1] {
+            background: yellow;
+        }
 
-        /* 자손 선택자 */
+        /* 속성값이 완전히 일치하거나 '-'이 바로 뒤에 붙는 요소 선택 */ 
+        div[class|=class] {
+            background: cyan;
+        }
+
+        /* 속성 값을 가지고 있으며, 접두사로 값이 포함된 요소 선택 */
+        div[name^=name] {
+            background: blue;
+        }
+
+        /* 속성 안의 값이 특정 값으로 끝나는 요소 선택 */
+        div[class$=class] {
+            color: white;
+        }
+
+        /* 속성 안에서 특정 값을 포함하고 있는 요소 선택 */
+        div[class*=div] {
+            background: yellow;
+            color: red;
+        }
+
+        /* 자손 선택자 */ 
         #test1>h4 {
             background: hotpink;
         }
@@ -21,8 +51,8 @@
         #test1 ul {
             background: yellow;
         }
-        
-        /* 형제 관계 선택자(바로 다음 요소) */
+
+        /* 형제관계 선택자(바로 다음 요소) */
         #div-test1 + div {
             background: yellow;
         }
@@ -45,14 +75,14 @@
             color: white;
         }
 
-        /* 마우스가 올렸다가(mouse in) 뺄 때(mouse out) css 적용 및 복원 */
+        /* 마우스를 올렸다가(mouse in) 뺄 때(mouse out) css 적용 및 복원 */
         #hover-test:hover {
             cursor: pointer;
             background: cyan;
             color: purple;
             font: 40px bold;
         }
-        
+
         /* 체크된 체크박스에 css 적용 */
         input[type=checkbox]:checked {
             width: 20px;
@@ -64,17 +94,19 @@
         }
 
         option:disabled {
-            background: gold;;
+            background: red;
+            color: white;
         }
 
         option:enabled {
-            background-color: yellowgreen;
+            background: yellowgreen;
         }
 
         input:disabled {
             background: firebrick;
         }
     </style>
+    <title>Document</title>
 </head>
 <body>
     <h2>기본 속성 선택자</h2>
@@ -138,7 +170,7 @@
     <p>입력 양식의 상태에 따라 선택되는 선택자</p>
     <pre>체크 상태의 input태그 선택: input태그:checked{설정내용}</pre>
     <!-- input[type="checkbox" name="fruits" value="사과"]#apple+label[for="apple"]{사과} -->
-    <input type="checkbox" name="fruits" value="사과" id="apple" >
+    <input type="checkbox" name="fruits" value="사과" id="apple" checked>
     <label for="apple">사과</label>
     
     <input type="checkbox" name="fruits" value="바나나" id="banana">
