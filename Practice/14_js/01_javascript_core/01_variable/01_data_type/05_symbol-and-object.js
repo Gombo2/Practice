@@ -24,4 +24,4 @@ obj[hidden] = '비밀 값';
 obj['name'] = '홍길동';
 console.log(obj);   // 일반 속성은 보인다.
 console.log(obj[hidden]);   // 숨겨진 프로퍼티에 접근
-console.log(Object.keys(obj));  // 일반 속성만 나옴
+console.log(Object.keys(obj)[0]);  // Object.keys의 매개변수에 던져진 객체의 프로퍼티를 추출해서 보여주는 함수. 
