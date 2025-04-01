@@ -19,6 +19,10 @@ console.log(student);
 
 // console.log(globalThis);    // 글로벌 객체
 
+/* 
+  생성자 함수가 일반 함수와 차이나도록 new 연산자 없이 호출되어도 객체가 생성되는
+  빌트인 함수로 만들 수 있다. (new.target을 활용)
+*/
 function Dog(name, age) {
     console.log('new.target', new.target);
 
