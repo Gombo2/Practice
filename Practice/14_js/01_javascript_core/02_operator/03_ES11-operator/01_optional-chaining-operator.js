@@ -8,3 +8,8 @@ var obj = null;
 
 var val = obj?.value;
 console.log(val); // NPE 방지 코드
+
+/* null이나 undefiend가 아니라면 .으로 접근한다. */
+var str = '';
+var len = str?.length;
+console.log(len);
