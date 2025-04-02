@@ -44,3 +44,17 @@ console.log(...idol1);
 
 console.log(`idol3를 기준으로 idol1, idol2를 concat: ${idol3.concat(idol1, idol2)}`);
 console.log(`idol3를 기준으로 idol1, idol2 배열을 concat: ${[...idol3, idol1, idol2]}`);
+
+/* slice(선택한 요소 복사) / splice(선택한 인덱스 위치 요소 제거 및 추가) */
+const front = ['HTML', 'CSS', "JavaScript", "Vue"];
+
+console.log(`front.slice(): ${front.slice(1,3)}`);  // 1~2 인덱스까지 복사
+console.log(`front: ${front}`);
+
+console.log(`front.splice(): ${front.splice(2, 2, 'JDBC')}`);  // 2번 인덱스 이후 부터 이후 2개를 제거하고 추가.
+console.log(`front: ${front}`);
+
+/* join(배열에 담긴 값들을 우리가 원하는 구분자를 포함한 문자열로 변환) */
+const snackList = ['사탕', '초코렛', '껌', '마이쮸'];
+console.log(`snackList.join(): ${snackList.join()}`);  // 기본 시 ,으로 구별
+console.log(`snackList.join(): ${snackList.join('/')}`); // 이렇게 기준을 정해줄 수 있음음
