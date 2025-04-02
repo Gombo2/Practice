@@ -36,7 +36,7 @@ const student = {
 
 // 자신(객체)에게 없는 메소드같은걸 사용하려고 할시 -> 자신의 프로토타입을 뒤져본다.(프로토타입을 다른 객체로 하면 상속이라고 한다.)
 // student.__proto__ = user2; //밑과 동일
-Obejct.setPrototypeOf(student, user2);
+Object.setPrototypeOf(student, user2);
 console.log(student.activate);
 
 const greedyStudent = {
@@ -44,7 +44,7 @@ const greedyStudent = {
 };
 
 /* 프로토타입 체인을 통한 접근*/
-/* greedyStudent -> student -> user2 -> Object.prototpye -> null */
+/* greedyStudent -> student -> user2 -> Object.prototype -> null */
 greedyStudent.__proto__ = student;
 console.log(greedyStudent.passion);
 greedyStudent.login();
