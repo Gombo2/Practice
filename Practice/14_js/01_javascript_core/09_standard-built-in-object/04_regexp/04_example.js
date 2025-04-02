@@ -32,6 +32,7 @@ console.log(/[^A-Za-z0-9]+/.test(exceptT));
 
 let target3 = 'https://www.google.com';
 
+/* match의 결과가 배열인데 그 배열에 그룹이 담기지 않도록 할려면 ?:을 쓴다. */
 let regex1 = /(https:)?([\/a-z\.]+)/;     
 let regex2 = /(?:https:)?([\/a-z\.]+)/;     
 
@@ -41,10 +42,12 @@ console.log(target3.match(regex2));
 let name = '홍길동전';
 console.log(/^[가-힣]{2,4}$/.test(name));
 
+/* 경계를 나타냄.  a로 시작하는 단어, a로 끝나는 단어 */
 let boundary = 'abc aba abd';
-console.log(boundary.match(/\ba/g));    
-console.log(boundary.match(/a\b/g));   
+console.log(boundary.match(/\ba/g));    // 단어의 시작이 a라면 a 추출 
+console.log(boundary.match(/a\b/g));    // 단어의 끝이 a라면 a 추출
 
+/* 띄어쓰기 추출 or 띄어쓰기를 제외한 나머지 추출.  */
 let space = 'abc def ghi';
-console.log(space.match(/\s/g));        
-console.log(space.match(/\S/g));        
+console.log(space.match(/\s/g));         // 공백만
+console.log(space.match(/\S/g));         // 공백이 아닌 것들만.
