@@ -21,7 +21,7 @@ let {price, getInfo, productName} = pants;
 
 console.log(price, getInfo, productName);
 
-/* 메소드에서의 tihs와 따로 뽑아낸 독립적인 함수의 this(전역객체)는 다르다. */
+/* 메소드에서의 this와 따로 뽑아낸 독립적인 함수의 this(전역객체)는 다르다. */
 pants.getInfo();
 getInfo();
 
