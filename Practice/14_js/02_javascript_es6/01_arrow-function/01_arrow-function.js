@@ -31,3 +31,38 @@ let theater = {
 };
 
 theater.showMovieList();
+
+
+
+/* 2. 화살표 함수는 new 연산자와 함께 사용할 수 없다. ( 생성자 함수로 쓰일 수 없다.) */
+const arrowFunc = () => {};
+const normalFunc = function() {
+
+};
+
+new arrowFunc();
+new normalFunc();
+
+/* 3. 화살표 함수는 argument를 지원하지 않는다. 
+    (외부 함수의 arguments가 있다면 외부함수의 arguments가 적용됨(렉시컬 arguments))
+*/
+
+const test = () => console.log(arguments);  // this와 같이 화살표 함수의 arguments가 아닌
+                                            // 상위 환경의 arguments(전역 객체의 arguments)가 나옴
+test(1,2,3,4,5);
+
+
+// const test2 = function() {
+//     console.log('normal outer:', arguments);
+
+// };
+
+// test2(1,2,3,4,5);
+
+const test2 = function() {
+    console.log('normal outer: ', arguments);
+    const arrowFunc = () => console.log('arrow inner: ', arguments);
+    arrowFunc();
+};
+
+test2(1, 2, 3, 4, 5);
