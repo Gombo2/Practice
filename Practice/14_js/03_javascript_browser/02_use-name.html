@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>02. 태그 이름을 이용한 요소 노드 취득</h2>
+
+    <!-- ul#food>li*3 -->
+    <ul id="food">
+        <li>김치찌개</li>
+        <li>된장찌개</li>
+        <li>고등어구이</li>
+    </ul>
+    <ul id="drink">
+        <li>커피</li>
+        <li>콜라</li>
+        <li>우유</li>
+    </ul>
+
+    <script>
+        const $ul = document.getElementById('food');
+        console.log('$ul', $ul);
+
+        
+        const $lists = document.getElementsByTagName('li');
+        console.log($lists);
+
+        /* writeable이 false이므로 순수 배열이 아닌 유사배열*/
+        console.log(Object.getOwnPropertyDescriptors($lists));
+        
+        $lists[0].innerText = '커피찌개';
+
+        console.log($lists[0].innerText);
+        console.log($lists[1].innerText);
+
+        let changeColor = 0;
+        for(let i = 0; i < $lists.length; i++) {
+            $lists[i].style.backgroundColor = "rgb(130, 220, " + changeColor + ")";
+            changeColor += 50;
+        }
+
+        /* 스프레드 연산자를 활용해 배열로 바꾸고 모든 요소를 돌아가며 color를 blue로 교체*/
+        /* 유사배열을 배열로 손쉽게 바꾸기 -> 스프레드 문법 */
+        [...$lists].forEach(list => list.style.color = 'blue');
+    </script>
+</body>
+</html>
