@@ -28,6 +28,17 @@
         // async 키워드를 붙인 함수는 항상 Promise를 반환한다. (resolve, reject를 사용하지 않고도 Promise를 반환할 수 있다.)
         // async 키워드를 붙인 함수 안에서 await 키워드를 사용하면 해당 Promise가 resolve될 때까지 기다린다.
         /* 블로킹을 키워드로 달았다는 개념 */
+        /*
+          await의 두가지 기능
+          1. await가 달린 함수의 결과인 promise 객체에 담긴 결과(성공/실패)를 반환한다.
+             (then과 비슷)
+          2. await가 달린 비동기 처리들은 그들 간에는 동기식으로 동작하게 한다.
+             (앞선 비동기의 결과로 다음 비동기 함수를 실행)
+
+          then 메소드처럼 callback함수는 필요 없지만, 전체를 감싸는 async 함수는 반드시
+          필요하다.
+          (주의: await를 쓰기 위해서 함수에 async를 달면 그 async 함수는 promise를 반환한다.)
+        */
         async function run() {
             let result = await increase(0); // increase(0) 호출 후 1초 대기
             console.log(result);
