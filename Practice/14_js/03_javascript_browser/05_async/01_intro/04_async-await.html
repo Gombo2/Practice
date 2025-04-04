@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number) {
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const result = number + 10;
+                    
+                    if (result > 50) {
+                        const e = new Error('NumberTooBig');
+                        reject(e);
+                    }
+
+                    return resolve(result);
+                }, 1000);
+            })
+
+            return promise;
+        }
+
+        //function 함수 앞에 async 키워드를 붙이면 해당 함수는 항상 Promise를 반환한다.
+        // async 키워드를 붙인 함수는 항상 Promise를 반환한다. (resolve, reject를 사용하지 않고도 Promise를 반환할 수 있다.)
+        // async 키워드를 붙인 함수 안에서 await 키워드를 사용하면 해당 Promise가 resolve될 때까지 기다린다.
+        /* 블로킹을 키워드로 달았다는 개념 */
+        async function run() {
+            let result = await increase(0); // increase(0) 호출 후 1초 대기
+            console.log(result);
+
+            result = await increase(result); // increase(result) 호출 후 1초 대기
+            console.log(result);
+
+            result = await increase(result);
+            console.log(result);
+
+            result = await increase(result);
+            console.log(result);
+
+            result = await increase(result);
+            console.log(result);
+
+            return -1;
+        }
+        // console.log(run()); // -1
+
+        run().then(result => console.log(result)); // -1 이래야 promise 안에서 -1을 꺼내쓸수 있다.
+    </script>
+</body>
+</html>

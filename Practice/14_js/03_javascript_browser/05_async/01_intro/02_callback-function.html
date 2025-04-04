@@ -16,7 +16,33 @@
             }, 1000);
         }
 
-        increase(0, result => {console.log(result);});
+        // increase(0, result => {console.log(result);});
+        /* anti-pattern이다 절대 이걸로 하지 말것 그냥 설명을 위한 코드 (비동기 2번을 순서 있게 처리) */
+        /* 
+           여러번 순차적으로 비동기 함수 호출의 결과들을 다음 콜백 함수로 던지기 위해서는
+           콜백 중첩을 사용해서 호출할 수 있다.
+
+           하지만 이러한 형태는 가독성도 좋지 않고 유지보수도 힘든 피해야 할 패턴(안티패턴) 중
+           하나이다. 이러한 형태를 콜백 지옥(callback hell)이라고 하고 사용하지 않도록 하자.
+           (콜백 지옥을 피하기 위해서는 Promise, async/await를 사용해야 한다.)
+        */
+        increase(0, result => {
+            console.log(result);
+            increase(result, result => {
+                console.log(result);
+                // increase... 계속해서 추가할 수 있다.
+                increase(result, result => {
+                    console.log(result);
+                    increase(result, result => {
+                        console.log(result);
+                        increase(result, result => {
+                            console.log(result);
+                            console.log('end');
+                        });
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>
