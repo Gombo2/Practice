@@ -64,6 +64,8 @@
 
               json() 또는 text()를 하면 response 객체의 body를 사용한 것(bodyUsed가 true)으로
               두 개를 동시에 사용할 수 없다.
+              둘 다 적용하고 싶다면 json()으로 나온 객체를 JSON.stringify()로 문자열로 변환한 후 사용할 수 있다.
+              (JSON.parse()를 통해 반대도 가능)
             */
             /* 3-3. bodyUsed */
             console.log(`넘어온 결과인 json 문자열을 사용했는지 여부: ${response.bodyUsed}`); // false
