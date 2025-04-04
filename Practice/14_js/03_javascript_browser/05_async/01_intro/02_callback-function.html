@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number, callback) {
+            setTimeout(() => {
+                const result = number + 10;
+                if(callback) {                  // 콜백 함수가 존재할 때만 호출 (함수가 남어오면 true, 아니면 false)
+                    callback(result);
+                }
+            }, 1000);
+        }
+
+        increase(0, result => {console.log(result);});
+    </script>
+</body>
+</html>
