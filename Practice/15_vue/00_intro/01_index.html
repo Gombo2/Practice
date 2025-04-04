@@ -10,10 +10,35 @@
     <div id="step01">
         <h5>다중 속성 바인딩</h5>
         <div>{{ multiAttr }} </div>
+        <button @click="func">ref에 담긴 객체 확인</button>
+        <!-- 호출하지않고 저렇게만 쓴다. -->
     </div>
 
     <script>
-        console.log(Vue);
+        // console.log(Vue);
+
+        // ref는 데이터를 인지시키기 위한 속성
+        const { createApp, ref } = Vue;
+        const vi = createApp({
+            setup() {
+                // const multiAttr = ref('multiId');
+                const multiAttr = ref({
+                    id: 'multiId',
+                    class: 'multiClass',
+                    value: 'multiValue'
+                });
+
+        const func = () => {
+            console.log(multiAttr.value);
+            console.log(multiAttr.value.value);
+        }
+
+                return { 
+                    multiAttr, 
+                    func
+                }
+            }
+        }).mount('#step01'); // mount는 Vue 인스턴스를 DOM에 연결하는 메서드
     </script>
 </body>
 </html>
