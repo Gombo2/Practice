@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+        <span>message: {{msg}} </span>
+        <hr>
+        <div v-text="msg"></div>
+        <div v-text="'message: '  + msg">abc</div>
+        <div id="inJs"></div>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        
+        createApp ({
+            setup() {
+                return {
+                    msg : 'Hello World!'
+                }
+            }
+        }).mount('#step01'); // mount는 Vue 인스턴스를 DOM에 연결하는 메서드
+        // createApp({}).mount('#step01'); // mount는 Vue 인스턴스를 DOM에 연결하는 메서드
+    </script>
+</body>
+</html>
