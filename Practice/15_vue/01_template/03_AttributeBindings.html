@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>속성 바인딩</h3>
+    <hr>
+    <div id="step01">
+        <h5>bind 구문</h5>
+        <div v-bind:id="dynamicId"> {{ value }} </div>
+
+        <!-- v-bind 지시자는 생략해서 쓸 수도 있다. -->
+        <div :id="skipId"> {{ skipValue }} </div>
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+        createApp({
+            setup() {
+                const dynamicId = ref('vue');
+                const value = ref('test');
+                const skipId = ref('skipId');
+                const skipValue = ref('skipValue');
+                return {
+                    dynamicId,
+                    value,
+                    skipId,
+                    skipValue
+                }
+
+            }
+        }).mount('#step01');
+    </script>
+</body>
+</html>

@@ -8,6 +8,9 @@
 </head>
 <body>
     <div id="step01">
+
+        <!-- 텍스트 보간법(머스태취 문법): 텍스트 노드(시작/정료태그 사이)에 동적인 값을
+         '추정'하여 삽입하는 구문 -->
         <span>message: {{msg}} </span>
         <hr>
         <div v-text="msg"></div>
@@ -15,6 +18,11 @@
         <div id="inJs"></div>
     </div>
     <script>
+
+        /* 순수 자바스크립트 선택자 개념으로도 가능 */
+        document.getElementById('inJs').innerText = 'message: ' + 'abc'; // 같은 개념이다.
+        
+        /* Vue의 라이브러리를 활용해서 MVVM 패턴을 적용 */
         const {createApp} = Vue;
         
         createApp ({
