@@ -96,8 +96,9 @@
                         <p>{{ wine.wine }}</p>
                         <img class="image" :src="wine.image" alt="와인 이미지">
                         
-                        <button @click="likeWine(wine.id)">like</button>
-                        <button @click="hateWine(wine.id)">hate</button>
+                        <button v-if="!likes.includes(wine.id)" @click="likeWine(wine.id)">like</button>
+                        <!-- <button v-else" @click="hateWine(wine.id)">hate</button> -->
+                        <button v-if="likes.includes(wine.id)" @click="hateWine(wine.id)">hate</button>
                     </div>
                 </template>
 
