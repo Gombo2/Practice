@@ -88,11 +88,23 @@
     <script>
         
         /* onMounted시점에 와인 데이터를 비동기로 가져오고, 와인과 관련된 상태(속성)과 기능을 따로 구분할 예정 */
-        const {createApp, ref, onMounted} = Vue;
+        // const {createApp, ref, onMounted} = Vue;
+
+        /* 
+            toRefs를 활용해서 state에 담긴 프로퍼티들 가각을 ref(반응형 변수) 역할을 하도록 함
+            (setup() 함수에 변화가 없도록)
+        */
+        const {createApp, reactive, onMounted, toRefs} = Vue;
 
         const useWines = () => {
-            const loadingState = ref(true);
-            const isMounted = ref(false);
+            // const loadingState = ref(true);
+            // const isMounted = ref(false);
+
+            /* 한 컴포넌트에 내보낼 반응형 변수들을 하나의 변수로 묶는 개념 */
+            const state = reactive({
+                loadingState: true,
+                isMounted: false
+            });
 
             /* 와인 데이터를 조회하는 기능 */
             const fetchWines = async() => {
@@ -107,10 +119,17 @@
                 /* mounted 시점에 위의 기능을 사용 */
                 await fetchWines();
 
+                /* 와인 데이터를 조회하고 나서 (비동기 통신 이후) 해야할 작업 */
+                // loadingState.value = false;  // '인생와인' 컴포넌트 보이게
+                // isMounted.value = true;      // css 적용되게
+                state.loadingState = false;     // '인생와인' 컴포넌트 보이게
+                state.isMounted = true;         //  css 적용되게
+
             });
 
             // return {loadingState:loadingState, isMounted:isMounted};
-            return {loadingState, isMounted};
+            // return {loadingState, isMounted};
+            return {... toRefs(state)}; // state를 리턴할 때, toRefs()를 사용하여 반응형으로 변환
         }
 
         createApp({
