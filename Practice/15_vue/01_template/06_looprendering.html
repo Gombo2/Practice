@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-for
+        배열을 기준으로 항목 목록을 랜더링하는 지시문(directive)이다.
+    -->
+    <div id="step01">
+        <h5>과일가게</h5>
+        <ul>
+            <li v-for="items in items"> {{ item }} </li>
+        </ul>
+    </div>
+
+    <script>
+        // reactive -> 객체 사용 , ref 속성 사용 
+        const {createApp, ref, reactive} = Vue;
+
+        createApp ({
+            setup() {
+                // 반응형 변수
+                const items = ref(['Apple', 'PineApple', 'Melon', 'WaterMelon']);
+                return {
+                    items
+                }
+            }
+        }).mount('#step01');
+    </script>
+</body>
+</html>
