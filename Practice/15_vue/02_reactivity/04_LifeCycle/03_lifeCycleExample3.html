@@ -84,13 +84,39 @@
                 <button @Click="goNext" class="btn">next</button>
             </div>
             
+            <div>
+                <p>내가 좋아요한 와인 id목록 : {{ likes }} </p>
+                <button @click="toggleViewingState"> {{ viewingState ? "쇼핑하기" : "쇼핑완료 " }}  </button>
+            </div>
+            
 
             <div class="appContainer">
+                <!-- 쇼핑하기 -->
+                <template v-if="!viewingState">
+                    <div class="wine-card" v-for="wine in pageWine" :key="wine.id">
+                        <p> {{ wine.wine }} </p>
+                        <img class="image" :src="wine.image" alt="와인 이미지">
+
+                        <button @click="likeWine(wine.id)">like</button>
+                        <button @click="hateWine(wine.id)">hate</button>
+                    </div>
+                </template>
+
+                <!-- 쇼핑 완료 -->
+                <template v-else>
+                    <div class="wine-card" v-for="wine in pageWine" :key="wine.id">
+                        <p> {{ wine.wine }} </p>
+                        <img class="image" :src="wine.image" alt="와인 이미지">
+                    </div>
+                </template>
+            </div>
+
+            <!-- <div class="appContainer">
                 <div class="wine-card" v-for="wine in pageWine" :key="wine.id">
                     <p> {{ wine.wine }} </p>
                     <img class="image" :src="wine.image" alt="와인 이미지">
                 </div>
-            </div>
+            </div> -->
         </template>
     </div>
     <script>
@@ -104,10 +130,14 @@
                 isMounted: false,
                 
                 //페이징 처리 1페이지,2페이지..
-                wines: [],         // 비동기 통신의 결과로 가져온 전체 와인이 담긴 배열(서버측에서 따로 페이징 처리x)
-                pageWine: [],      // 현재 페이지에 보여줄 와인이 담길 배열
-                index: 0,          // 한 페이지의 시작
-                next: 10,          // 한 페이지의 끝(next - 1)
+                wines: [],          // 비동기 통신의 결과로 가져온 전체 와인이 담긴 배열(서버측에서 따로 페이징 처리x)
+                pageWine: [],       // 현재 페이지에 보여줄 와인이 담길 배열
+                index: 0,           // 한 페이지의 시작
+                next: 10,           // 한 페이지의 끝(next - 1)
+
+                viewingState: false, // '쇼핑 완료' 버튼을 누르기 전(와인 목록 보기)과 후(선택한 와인 목록 보기)
+                likes: [],           // 좋아요 한 wine목록(wine의 id값만 추출)
+                totalLikes: []       // 좋아요 한 wine 목록(wines에서 해당 wine들의 전체 데이터를 추출)
             });
 
             const fetchWines = async() => {
@@ -137,6 +167,35 @@
                 }
             }
 
+            const toggleViewingState = () => {
+                state.viewingState = !state.viewingState;
+
+                /* totalLikes 이후 */
+                if(state.viewingState) {
+
+                    /* 전체 와인(state.wines)에서 좋아요 한 와인의 id값들(state.likes)에 속하는 와인의 전체 정보들을 추출 */
+                    state.totalLikes = state.wines.filter((wine) => state.likes.includes(wine.id));
+                }
+            }
+
+            const likeWine = (id) => {
+                /* likes(좋아요 한) 배열 안에 지금 넘어온 와인의 id가 없으면 추가 */
+                if(!state.likes.includes(id)) {
+                state.likes.push(id);
+                }
+            }
+
+            const hateWine = (id) => {
+                if(state.likes.includes(id)) {
+                    const index = state.likes.indexOf(id); // id의 인덱스 찾기
+                    
+                    if(index > -1) { // likes에 hate 하고자 하는 와인이 있으면
+                        state.likes = state.likes.filter((item) => item !== id); // 해당 id를 제외한 나머지 배열을 likes에 담기
+                        
+                    }
+                }
+            }
+            
             onMounted(async() => {
                 console.log('DOM이 Mount 된 후(완료)...');
 
@@ -147,7 +206,7 @@
             });
 
            
-            return {... toRefs(state), goBack, goNext}; 
+            return {... toRefs(state), goBack, goNext, toggleViewingState, likeWine, hateWine}; 
         }
 
         createApp({
@@ -162,7 +221,15 @@
                     next,
 
                     goBack,
-                    goNext
+                    goNext,
+
+                    viewingState,
+                    likes,
+                    totalLikes,
+
+                    toggleViewingState,
+                    likeWine,
+                    hateWine
                 } = useWines();   
 
                 return {
@@ -175,7 +242,15 @@
                     next,
 
                     goBack,
-                    goNext
+                    goNext,
+
+                    viewingState,
+                    likes,
+                    totalLikes,
+
+                    toggleViewingState,
+                    likeWine,
+                    hateWine
                 }
             }
         }).mount('#app');
