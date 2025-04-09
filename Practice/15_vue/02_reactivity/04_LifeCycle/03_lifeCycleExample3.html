@@ -101,7 +101,7 @@
                         <button v-if="likes.includes(wine.id)" @click="hateWine(wine.id)">hate</button>
                     </div>
                 </template>
-
+ 
                 <!-- 쇼핑 완료 -->
                  <template v-else>
                     <div class="wine-card" v-for="wine in totalLikes" :key="wine.id">
