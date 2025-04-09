@@ -128,7 +128,7 @@
             }
 
             const goNext = () => {
-                if(state.next + 10 < state.wines.length ) { // 인덱스가 10을 더해도 전체 와인 데이터의 길이를 넘지 않는 범위일때
+                if(state.index + 10 < state.wines.length ) { // 인덱스가 10을 더해도 전체 와인 데이터의 길이를 넘지 않는 범위일때
                     state.index += 10;
                     state.next += 10;
                     state.pageWine = state.wines.slice(state.index, state.next);
