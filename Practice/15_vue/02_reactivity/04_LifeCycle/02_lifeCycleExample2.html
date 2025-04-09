@@ -128,14 +128,14 @@
             });
 
             // return {loadingState:loadingState, isMounted:isMounted};
-            // return {loadingState, isMounted};
+            // return {loadingState, isMounted};    //프로퍼티 값 단축(변수로 객체 쉽게 만들기)
             return {... toRefs(state)}; // state를 리턴할 때, toRefs()를 사용하여 반응형으로 변환
         }
 
         createApp({
             setup() {
 
-                const {loadingState, isMounted} = useWines();
+                const {loadingState, isMounted} = useWines();   //객체 구조분해 할당
 
                 return {
                     loadingState,
