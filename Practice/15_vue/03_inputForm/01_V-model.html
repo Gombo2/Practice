@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .custom-input input {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+        <div>
+            <h4>name: {{ name }}</h4>
+            <h4>address: {{ address }}</h4>
+            <h4>age: {{ age }}</h4>
+            <h4>introduce: |{{ introduce }}|</h4>
+        </div>
+        <label>이름: </label>
+        <input type="text" v-model="name">
+        <br>
+        <label>주소: </label>
+        <input type="text" v-model="address">
+        <br>
+
+        <!--
+            type=number와 같은 기능을 수행한다.
+            숫자로 변환되지 않으면 v-model에 영향을 받지 않는다. 
+            (단, 숫자로 시작했을 시)
+        -->
+        <label>나이: </label>
+        <input type="text" v-model.number="age">
+        <br>
+
+        <!--
+            trim은 앞 뒤 공백 입력 시 v-model에 반영되지 않음
+        -->
+        <label>자기소개: </label>
+        <input type="text" v-model.trim="introduce">
+    </div>
+    
+    <!-- textarea -->
+    <div id="step02">
+        <p>vue에 대한 생각을 작성해 주세요: {{ message }}</p>
+        <textarea v-model="message"></textarea>
+
+        <!-- textarea 작성 후 blur(포커스가 빠짐) 시 데이터가 수정됨(데이터 수정 횟수 감소효과) -->
+        <p>느리게 반영되는 msg: {{ msg }}</p>
+        <textarea v-model.lazy="msg"></textarea>
+    </div>
+
+    <!-- select -->
+     <div id="step03">
+
+        <!-- option 태그가 바뀌면(다른 선택을 하면) change이벤트가 발생하고 해당 데이터도 변경됨 -->
+        <p>단일 선택: {{ selected }}</p>
+        <select v-model="selected" @change="check">
+            <option value="apple">apple</option>
+            <option value="pineapple">pineapple</option>
+            <option value="grape">grape</option>
+        </select>
+
+        <br>
+        <p>다중 선택: {{ fruits }}</p>
+        <select v-model="fruits" multiple>
+            <option value="apple">apple</option>
+            <option value="pineapple">pineapple</option>
+            <option value="grape">grape</option>
+        </select>
+     </div>
+
+     <!-- checkbox -->
+     <!--
+        이벤트 핸들러 함수에 이벤트 정보를 지닌 이벤트 객체가 넘어온다면($event) 아래와 같이 작성해 볼 수 있다.
+        const index = fruits.indexOf(evnet.srcElement.value);
+        if(index != -1) {
+            fruits.splice(index, 1);
+        } else {
+            fruits.push(event.srcElement.value); 
+        }
+     -->
+
+      <div id="step04">
+        <p>과일 목록: {{ fruits }}</p>
+        <input type="checkbox" id="apple" name="check" value="apple" v-model="fruits">
+        <label for="apple">apple</label>
+        <input type="checkbox" id="pineapple" name="check" value="pineapple" v-model="fruits">
+        <label for="pineapple">pineapple</label>
+        <input type="checkbox" id="grape" name="check" value="grape" v-model="fruits">
+        <label for="grape">grape</label>
+
+        <br>
+        <p>toggle: {{ toggle }}</p>
+        <input type="checkbox" v-model="toggle" 
+        :true-value="dynamicTrueValue" 
+        :false-value="dynamicFalseValue">
+      </div>
+    <script>
+        const {createApp, ref} = Vue;
+        createApp({
+            setup() {
+                const name = ref('');
+                const address = ref('');
+                const age = ref(0);
+                const introduce = ref('');
+
+                return {
+                    name,
+                    address,
+                    age,
+                    introduce
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup() {
+                const message = ref('');
+                const msg = ref('');
+
+                return {
+                    message,
+                    msg
+                }
+            }
+        }).mount('#step02');
+
+        createApp({
+            setup() {
+                const selected = ref('grape');
+                function check() {
+                    console.log(selected.value);
+                }
+                const fruits = ref([]);
+                return {
+                    selected,
+                    check,
+                    fruits
+                }
+            }
+        }).mount('#step03');
+
+        createApp({
+            setup() {
+                const fruits = ref([]);
+                const toggle = ref('선택한 적 없음');
+                const dynamicTrueValue = ref('선택 됨');
+                const dynamicFalseValue = ref('선택 안됨');
+
+                return {
+                    fruits,
+                    toggle,
+                    dynamicTrueValue,
+                    dynamicFalseValue
+                }
+            }
+        }).mount('#step04');
+    </script>
+</body>
+</html>
