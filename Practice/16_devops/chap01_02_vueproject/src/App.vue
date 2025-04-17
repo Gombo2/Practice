@@ -17,7 +17,12 @@
     const sum = ref(0);
 
     const sendPlus = async() => {
-        const response = await fetch(`http://localhost:7777/plus?num1=${num1.value}&num2=${num2.value}`);
+        
+        /* 1. 백엔드에서 cors, 프론트에서 X */
+        // const response = await fetch(`http://localhost:7777/plus?num1=${num1.value}&num2=${num2.value}`);
+
+        /* 2. 백엔드에서 X, 프론트에서 cors 처리 */
+        const response = await fetch(`http://localhost:5173/api/plus?num1=${num1.value}&num2=${num2.value}`);
         const data = await response.json();
         console.log('data: ', data);
         sum.value = data.sum;
