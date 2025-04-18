@@ -9,4 +9,4 @@ COPY . .
 RUN npm install
 
 ## 도커의 문법에 맞게 작성한 DSL 파일
-CMD ['npm', 'run', 'dev', '--', '--host', '0.0.0.0']
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
