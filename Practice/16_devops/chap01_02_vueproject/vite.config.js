@@ -18,7 +18,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:7777',
+        /* 1. 7777일때 : 백엔드가 컨테이너화 되기 전(8055:7777) */
+        // target: 'http://localhost:7777',
+
+        /* 2. 백엔드가 컨테이너화 됨(8055:7777)*/
+        target: 'http://localhost:8055',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

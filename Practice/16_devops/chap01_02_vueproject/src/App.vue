@@ -22,7 +22,21 @@
         // const response = await fetch(`http://localhost:7777/plus?num1=${num1.value}&num2=${num2.value}`);
 
         /* 2. 백엔드에서 X, 프론트에서 cors 처리 */
-        const response = await fetch(`http://localhost:5173/api/plus?num1=${num1.value}&num2=${num2.value}`);
+        // const response = await fetch(`http://localhost:5173/api/plus?num1=${num1.value}&num2=${num2.value}`);
+
+        /* 이후 코드는 post 요청에 request body 활용(백엔드도 수정) */
+        const response = await fetch('http://localhost:5173/api/plus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8;'
+            },
+            body: JSON.stringify({
+                num1: num1.value,
+                num2: num2.value
+            })
+        });
+
+
         const data = await response.json();
         console.log('data: ', data);
         sum.value = data.sum;
