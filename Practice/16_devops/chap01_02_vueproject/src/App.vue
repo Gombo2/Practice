@@ -38,7 +38,19 @@
 
 
         /*3. 백엔드에서 cors, 프론트에서 X (백엔드 + 프론트엔드 둘 다 컨테이너화 이후) */
-        const response = await fetch('http://localhost:8055/plus', {
+        // const response = await fetch('http://localhost:8055/plus', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json;charset=UTF-8;'
+        //     },
+        //     body: JSON.stringify({
+        //         num1: num1.value,
+        //         num2: num2.value
+        //     })
+        // });
+
+        /* 4. 백엔드에서 X, 프론트에서 cors(docker-compose를 활용해 네트워크로 통신, 둘 다 컨테이너) */
+        const response = await fetch('http://localhost:8011/api/plus', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8;'

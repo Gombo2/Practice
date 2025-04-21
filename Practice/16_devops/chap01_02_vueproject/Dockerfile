@@ -1,5 +1,9 @@
 FROM node:lts-alpine
 
+## curl(client url) 설치
+## curl을 통해 npx를 설치한다.
+RUN apk add --no-cache curl
+
 WORKDIR /app
 
 COPY . .
