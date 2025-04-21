@@ -1,0 +1,36 @@
+## docker-compose를 사용하면 여러개의 이미지 및 컨테이너를 다를 수 있다. 
+## 1. 로컬에 해당 이미지가 있는지 보고 있으면 로컬 이미지를 활용
+## 2. 로컬에 이미지가 없으면 원격(docker hub)에 이미지가 있는지 보고 있으면 원격 이미지 활용
+## 3. 앞의 두 과정 모두에 해당하지 않으면 context에 있는 Dockerfile을 사용하여 이미지를 생성
+
+## 컨테이너 실행: docker-compose up
+## 컨테이너 중지: docker-compose down
+
+services:
+  springboot-app:
+    build:
+      context: ./chap01_01_bootproject
+      dockerfile: Dockerfile
+
+    image: gombo2/boot_14_project
+    container_name: boot-container
+    ports:
+      - "8055:7777"
+    networks:
+      - camp-net
+
+  vue-app:
+    build:
+      context: ./chap01_02_vueproject
+      dockerfile: Dockerfile
+
+    image: gombo2/vue_14_project
+    container_name: vue-container
+    ports:
+      - "8011:5173"
+    networks:
+      - camp-net
+
+networks:
+  camp-net:
+    driver: bridge
