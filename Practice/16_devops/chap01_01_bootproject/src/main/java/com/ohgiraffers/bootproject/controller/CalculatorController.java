@@ -25,7 +25,7 @@ public class CalculatorController {
 
 	@GetMapping("/health")
 	public String healthCheck() {
-		return "I'm alive!!";
+		return "I'm alive!!123";
 	}
 
 	// //커맨드 객체로 프론트걸 받을거임 -> DTO로 한번에 받기

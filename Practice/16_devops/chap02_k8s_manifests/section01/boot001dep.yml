@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: boot-container
-        image: gombo2/k8s_14_boot
+        image: gombo2/k8s_14_boot:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 7777
