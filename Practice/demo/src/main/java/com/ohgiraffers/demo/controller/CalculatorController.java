@@ -1,4 +1,4 @@
-package com.ohgiraffers.bootproject.controller;
+package com.ohgiraffers.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ohgiraffers.bootproject.dto.CalculatorDTO;
-import com.ohgiraffers.bootproject.service.CalculatorService;
+import com.ohgiraffers.demo.dto.CalculatorDTO;
+import com.ohgiraffers.demo.service.CalculatorService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +25,7 @@ public class CalculatorController {
 
 	@GetMapping("/health")
 	public String healthCheck() {
-		return "I'm alive!!123";
+		return "I'm alive!!1231231";
 	}
 
 	// //커맨드 객체로 프론트걸 받을거임 -> DTO로 한번에 받기

@@ -1,4 +1,4 @@
-package com.ohgiraffers.bootproject.dto;
+package com.ohgiraffers.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

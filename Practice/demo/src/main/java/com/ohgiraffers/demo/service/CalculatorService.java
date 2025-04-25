@@ -1,8 +1,8 @@
-package com.ohgiraffers.bootproject.service;
+package com.ohgiraffers.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.ohgiraffers.bootproject.dto.CalculatorDTO;
+import com.ohgiraffers.demo.dto.CalculatorDTO;
 
 @Service
 public class CalculatorService {
